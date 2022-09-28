@@ -88,9 +88,7 @@ WSGI_APPLICATION = 'libraryData.wsgi.application'
 #     }
 # }
 DATABASES = {
-    'dafulat': dj_database_url.parse(
-        os.environ.get('DATABASE_URL')
-    )
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
 # Password validation
