@@ -22,6 +22,7 @@ class Book(models.Model):
     excerpt = models.TextField()
     bookmarked = models.ManyToManyField(User, related_name="bookmarked")
     available = models.BooleanField(default=True)
+    shelf = models.CharField(max_length=10, null=False, default="vault")
 
     class Meta:
         ordering = ['title']
