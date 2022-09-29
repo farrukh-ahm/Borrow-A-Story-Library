@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2 class="center-align page-title teal-text text-darken-4">Our Catalogue</h2>
+    <div class="row">
+        {% for book in book_list %}
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ book.featured_image.url }}" class="image-control">
+                        <span class="card-title">{{book.title}}</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Author: {{ book.author }}</p>
+                        <p>Published: {{ book.publish_year }}</p>
+                        <p>Shelf: {{ book.shelf }}</p>
+                    </div>
+                    <div class="card-action">
+                        {% if user.is_authenticated %}
+                            {% if book.available %}
+                                <a href="#" class="right lime-text text-lighten-1">Borrow</a>
+                            {% else %}
+                                <p class="right lime-text text-lighten-1">Not Available</p>
+                            {% endif %}
+                        {% else %}
+                            <a href="#" class="right lime-text text-lighten-1">LogIn</a>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                                <a href="#" class=""><i class="small material-icons pink-text text-accent-1">cloud_queue</i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:3%}
+    </div>
+    <div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    {% if is_paginated %}
+
+    <ul class="pagination center">
+        {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+        {% endif %}
+    </ul>
+
+    {% endif %}
+
+{% endblock %}
