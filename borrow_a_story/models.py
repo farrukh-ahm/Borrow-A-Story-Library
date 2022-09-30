@@ -47,3 +47,12 @@ class Issue(models.Model):
 
     def __str__(self):
         return f"{self.book}: {self.issued_to}"
+
+
+class User_Detail(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+    address = models.TextField()
+    contact_no = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.user}: {self.contact_no}"

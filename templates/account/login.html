@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col s12 m12">
+    <h3 class="center-align teal-text text-darken-4">{% trans "Sign In" %}</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12 m12">
+    <p class="center-align">{% blocktrans %}If you have not created an account yet, then please
+    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12 m6 push-m3 push-l3">
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class="primaryAction btn lime lighten-1 teal-text text-darken-4" type="submit"><i class="small material-icons left">android</i>{% trans "Sign In" %}</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
