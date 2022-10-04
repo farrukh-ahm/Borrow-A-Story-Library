@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+import datetime
 
 
 class Author(models.Model):
@@ -37,10 +38,10 @@ class Issue(models.Model):
     issued_on = models.DateTimeField(auto_now=True)
     return_by = models.DateField()
 
-    def return_date(self, *args, **kwargs):
-        if self.return_by is None:
-            self.return_by = self.issued_on.date() + datetime.timedelta(days=30)
-        return self.return_by
+    # def return_date(self, *args, **kwargs):
+    #     if self.return_by is None:
+    #         self.return_by = self.issued_on.date() + datetime.timedelta(days=30)
+    #     return self.return_by
 
     class Meta:
         ordering = ['issued_on']

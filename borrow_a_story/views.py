@@ -15,11 +15,11 @@ class BookIssue(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Book.objects.all()
         book = get_object_or_404(queryset, slug=slug)
-        issue = book.issue.all()
+        issue_date = book.issue.all()
         form = IssueForm()
         context = {
             'book': book,
-            'issue': issue,
+            'issue': issue_date,
             'form': form,
         }
 
