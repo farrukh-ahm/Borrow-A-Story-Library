@@ -15,12 +15,16 @@ class BookIssue(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Book.objects.all()
         book = get_object_or_404(queryset, slug=slug)
-        # issue_date = book.issue.all()
+        # issue = book.issue.filter(issued_to=request.user)
+        # issuer = False
+        # if book.issue.filter(issued_to=self.request.user).exists():
+        #     issuer = True
         form = IssueForm()
         context = {
             'book': book,
-            # 'issue': issue_date,
+            # 'issue': issue,
             'form': form,
+            # 'issuer': issuer
         }
 
         return render(request, 'book_issue.html', context)
