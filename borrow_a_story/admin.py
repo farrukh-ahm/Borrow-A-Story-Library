@@ -17,5 +17,5 @@ class BookAdmin(admin.ModelAdmin):
 
 @admin.register(Issue)
 class IssueAdmin(admin.ModelAdmin):
-    list_display = ['book', 'issued_to', 'issued_on']
+    list_display = ['book', 'issued_to', 'issued_on', 'return_status']
     search_fields = ['book']

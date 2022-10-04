@@ -37,6 +37,7 @@ class Issue(models.Model):
     issued_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_name")
     issued_on = models.DateTimeField(auto_now=True)
     return_by = models.DateField()
+    return_status = models.BooleanField(default=False)
 
     # def return_date(self, *args, **kwargs):
     #     if self.return_by is None:
