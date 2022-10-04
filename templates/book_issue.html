@@ -4,16 +4,40 @@
 {% load crispy_forms_tags %}
 
 
-    <p>{{ book.title }}</p>
-    <p>{{ book.author }}</p>
-    {{issue.issued_to}}
-    <div class="row">
-        <form action="" class="col s12">
-            {{form | crispy}}
-            {% csrf_token %}
-            <a href="#" class="btn">Submit</a>
-        </form>
+
+  <div class="row">
+    <div class="col s12 m6 center-align offset-m3">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{ book.featured_image.url }}">
+          <span class="card-title">{{ book.title }}</span>
+        </div>
+        <div class="card-content">
+          <p>{{ book.excerpt }}</p>
+          <p class="left-align"><b>Author:</b> {{ book.author }}</p>
+          <p class="left-align"><b>Publish year:</b> {{ book.publish_year }}</p>
+          <p class="left-align"><b>Shelf:</b> {{ book.shelf }}</p>
+        </div>
+      </div>
     </div>
+  </div>
+  
+  {% if book.available %}
+  <div class="row">
+    <div class="col s6 m6 offset-m3">
+        <p>Borrowing as: {{ user.username }}</p>
+    </div>
+    <form action="" class="col s6 m6 offset-m3" method="POST">
+        <!-- <label for="username">Borrowing As:</label>
+        <input type="text" value="{{ user.username }}" id="username"> -->
+        {{form}}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+    </form>
+  </div>
+  {% else %}
+  <p>Not Available</p>
+  {% endif %}
 
 
 {% endblock %}

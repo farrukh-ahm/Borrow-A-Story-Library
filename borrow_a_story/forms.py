@@ -10,5 +10,5 @@ class IssueForm(forms.ModelForm):
 
     class Meta:
         model = Issue
-        fields = ('issued_to', 'return_by',)
+        fields = ('return_by',)
         widgets = {'return_by': DateInput()}
