@@ -19,12 +19,12 @@
                     <div class="card-action">
                         {% if user.is_authenticated %}
                             {% if book.available %}
-                                <a href="#" class="right lime-text text-lighten-1">Borrow</a>
+                                <a href="{% url 'book_issue' book.slug %}" class="right lime-text text-lighten-1">Borrow</a>
                             {% else %}
                                 <p class="right lime-text text-lighten-1">Not Available</p>
                             {% endif %}
                         {% else %}
-                            <a href="#" class="right lime-text text-lighten-1">LogIn</a>
+                            <a href="{% url 'account_login' %}" class="right-align lime-text text-lighten-1">LogIn</a>
                         {% endif %}
                         {% if user.is_authenticated %}
                                 <a href="#" class=""><i class="small material-icons pink-text text-accent-1">cloud_queue</i></a>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            {% if forloop.counter|divisibleby:3%}
+            {% if forloop.counter|divisibleby:3 %}
     </div>
     <div class="row">
             {% endif %}

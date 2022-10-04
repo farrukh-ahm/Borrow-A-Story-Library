@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+    <p>{{ book.title }}</p>
+    <p>{{ book.author }}</p>
+    <div class="row">
+        <form action="" class="col s12">
+            {{form | crispy}}
+            {% csrf_token %}
+            <a href="#" class="btn">Submit</a>
+        </form>
+    </div>
+
+
+{% endblock %}

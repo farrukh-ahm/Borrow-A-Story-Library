@@ -49,12 +49,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'borrow_a_story',
+    'materialize',
+    'crispy_forms',
+    'crispy_forms_materialize',
 ]
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
 
 
 MIDDLEWARE = [
