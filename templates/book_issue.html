@@ -36,7 +36,15 @@
     </form>
   </div>
   {% else %}
-  <p>Not Available</p>
+    {% if book.issue.issued_to == User.username %}
+    <div class="row">
+      <div class="col s6 m6 offset-m3">
+        <a href="#" class="btn right-align">Return</a>
+      </div>
+    </div>
+    {% else %}
+        <p class="right lime-text text-lighten-1">Not Available</p>
+    {% endif %}
   {% endif %}
 
 

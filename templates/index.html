@@ -21,8 +21,8 @@
                             {% if book.available %}
                                 <a href="{% url 'book_issue' book.slug %}" class="right lime-text text-lighten-1">Borrow</a>
                             {% else %}
-                                {% if issue.issued_to == user.username %}
-                                    <a href="#" class="btn">Return</a>
+                                {% if book.issue.issued_to == User.username %}
+                                    <a href="{% url 'book_issue' book.slug %}" class="btn right">Return</a>
                                 {% else %}
                                     <p class="right lime-text text-lighten-1">Not Available</p>
                                 {% endif %}
