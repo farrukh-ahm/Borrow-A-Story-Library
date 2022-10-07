@@ -21,11 +21,13 @@
                             {% if book.available %}
                                 <a href="{% url 'book_issue' book.slug %}" class="right lime-text text-lighten-1">Borrow</a>
                             {% else %}
-                                {% if book.issue.issued_to == User.username %}
+                                {% for issue in book.issue.all %}
+                                    {% if issue.issued_to == user %}
                                     <a href="{% url 'book_issue' book.slug %}" class="btn right">Return</a>
-                                {% else %}
-                                    <p class="right lime-text text-lighten-1">Not Available</p>
-                                {% endif %}
+                                    {% else %}
+                                        <p class="right lime-text text-lighten-1">Not Available</p>
+                                    {% endif %}
+                                {% endfor%}
                             {% endif %}
                         {% else %}
                             <a href="{% url 'account_login' %}" class="right-align lime-text text-lighten-1">LogIn</a>

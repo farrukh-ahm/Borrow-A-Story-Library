@@ -9,6 +9,13 @@ class BookCatalogue(generic.ListView):
     paginate_by = 9
     template_name = 'index.html'
 
+    # def get_queryset(self):
+    #     # user = User.objects.get(username=self.kwargs['username'])
+    #     book = Book.objects.all()
+    #     issue = book.issue.filter(issued_to=request.user.get_username())
+    #     return issue
+
+
 
 class BookIssue(View):
 
@@ -51,3 +58,23 @@ class BookIssue(View):
         }
 
         return render(request, 'book_issue.html', context)
+
+
+class BookReturn(View):
+
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Book.objects.all()
+        book = get_object_or_404(queryset, slug=slug)
+        issue = book.issue.filter(return_status=False)
+        book.available = True
+        issue.return_status = True
+        issue.update()
+        # issued.book = book
+        # issued.save()
+        book.save()
+
+        context = {
+            'book': book,
+        }
+
+        return render(request, 'book_return.html', context)

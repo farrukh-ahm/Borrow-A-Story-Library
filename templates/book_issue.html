@@ -39,7 +39,7 @@
     {% if book.issue.issued_to == User.username %}
     <div class="row">
       <div class="col s6 m6 offset-m3">
-        <a href="#" class="btn right-align">Return</a>
+        <a href="{% url 'book_return' book.slug %}" class="btn right-align">Return</a>
       </div>
     </div>
     {% else %}

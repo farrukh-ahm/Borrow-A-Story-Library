@@ -33,7 +33,7 @@ class Book(models.Model):
 
 
 class Issue(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="issue")
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='issue')
     issued_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_name")
     issued_on = models.DateTimeField(auto_now=True)
     return_by = models.DateField()
