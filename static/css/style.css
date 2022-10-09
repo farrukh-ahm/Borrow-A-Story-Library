@@ -16,7 +16,8 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    /* margin-left: 5rem !important;
-    background-color: black;
-    z-index: 10; */
+}
+
+.manual-padding-cards{
+    margin-bottom: 5rem;
 }

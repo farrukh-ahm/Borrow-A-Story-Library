@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views import generic, View
 from .models import Author, Book, Issue
 from .forms import IssueForm
+import random
 
 
 class BookCatalogue(generic.ListView):
@@ -64,6 +65,15 @@ class BookReturn(View):
 
     def get(self, request, slug, *args, **kwargs):
         queryset = Book.objects.all()
+        # ------------------------------
+        random_books = []
+        last = queryset.count()
+        while len(random_books) < 3:
+            random_no = random.randint(0, last-1)
+            fetch_random = Book.objects.all()[random_no]
+            if fetch_random not in random_books:
+                random_books.append(fetch_random)
+        # ------------------------------
         book = get_object_or_404(queryset, slug=slug)
         issue = book.issue.filter(return_status=False)
         book.available = True
@@ -75,6 +85,7 @@ class BookReturn(View):
 
         context = {
             'book': book,
+            'random_books': random_books,
         }
 
         return render(request, 'book_return.html', context)
