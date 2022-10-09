@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
 
     <h2 class="center-align page-title teal-text text-darken-4">Our Catalogue</h2>
@@ -21,7 +22,7 @@
                             {% if book.available %}
                                 <a href="{% url 'book_issue' book.slug %}" class="right lime-text text-lighten-1">Borrow</a>
                             {% else %}
-                                {% for issue in book.issue.all %}
+                                {% for issue in book.issue.all|slice:":1" %}
                                     {% if issue.issued_to == user %}
                                     <a href="{% url 'book_issue' book.slug %}" class="btn right">Return</a>
                                     {% else %}

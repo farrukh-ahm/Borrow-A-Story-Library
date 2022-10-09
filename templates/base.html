@@ -1,15 +1,16 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- MaterializeCSS Links -->
+    <!-- Materialize Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Custom CSS File -->
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Local CSS Link -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <title>Library Database</title>
 </head>
 <body>
@@ -17,21 +18,21 @@
 
         <nav>
             <div class="nav-wrapper lime lighten-1">
-            <a href="#!" class="brand-logo  teal-text text-darken-4" id="title">Borrow A Story!</a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            {% if user.is_authenticated %}
-                <p class="center-align">Welcome {{ user.get_username }}</p>
-            {% endif %}
-            <ul class="right hide-on-med-and-down">
-                <li><a href="/" class="teal-text text-darken-4">Home</a></li>
+                <a href="#!" class="brand-logo  teal-text text-darken-4" id="title">Borrow A Story!</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 {% if user.is_authenticated %}
-                    <li><a href="#" class="teal-text text-darken-4">Profile</a></li>
-                    <li><a href="{% url 'account_logout' %}" class="teal-text text-darken-4">LogOut</a></li>
-                {% else %}
-                    <li><a href="{% url 'account_login' %}" class="teal-text text-darken-4">LogIn</a></li>
-                    <li><a href="{% url 'account_signup' %}" class="teal-text text-darken-4">SignUp</a></li> 
+                    <span id="logged-user" class="teal-text">Welcome {{ user.get_username }}</span>
                 {% endif %}
-            </ul>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="/" class="teal-text text-darken-4">Home</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="#" class="teal-text text-darken-4">Profile</a></li>
+                        <li><a href="{% url 'account_logout' %}" class="teal-text text-darken-4">LogOut</a></li>
+                    {% else %}
+                        <li><a href="{% url 'account_login' %}" class="teal-text text-darken-4">LogIn</a></li>
+                        <li><a href="{% url 'account_signup' %}" class="teal-text text-darken-4">SignUp</a></li> 
+                    {% endif %}
+                </ul>
             </div>
         </nav>
 

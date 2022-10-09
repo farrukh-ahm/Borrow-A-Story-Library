@@ -40,9 +40,9 @@ class BookIssue(View):
         queryset = Book.objects.all()
         book = get_object_or_404(queryset, slug=slug)
         issue = book.issue.all()
-        book.available = False
         form_content = IssueForm(request.POST)
         if form_content.is_valid():
+            book.available = False
             form_content.instance.issued_to = request.user
             issued = form_content.save(commit=False)
             issued.book = book
@@ -67,8 +67,8 @@ class BookReturn(View):
         book = get_object_or_404(queryset, slug=slug)
         issue = book.issue.filter(return_status=False)
         book.available = True
-        issue.return_status = True
-        issue.update()
+        # issue.return_status = True
+        issue.update(return_status=True)
         # issued.book = book
         # issued.save()
         book.save()
