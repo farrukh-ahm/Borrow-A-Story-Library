@@ -116,18 +116,26 @@ class UserProfile(View):
         try:
             queryset = User_Detail.objects.all()
             user_info = get_object_or_404(queryset, user=request.user)
+            profile_form = ProfileForm()
+            user_form = ProfileForm(request.POST, instance=user_info)
+            if user_form.is_valid():
+                user_update = user_form.save(commit=False)
+                user_update.user = request.user
+                user_update.save()
+            else:
+                user_form = ProfileForm()
         except:
-            queryset = []
+            # queryset = []
             user_info = {'address': 'No details', 'contact_no': 'No details'}
-        # user_info = get_object_or_404(queryset, user=request.user)
-        profile_form = ProfileForm()
-        user_form = ProfileForm(request.POST)
-        if user_form.is_valid():
-            user_update = user_form.save(commit=False)
-            user_update.user = request.user
-            user_update.save()
-        else:
-            user_form = ProfileForm()
+            # user_info = get_object_or_404(queryset, user=request.user)
+            profile_form = ProfileForm()
+            user_form = ProfileForm(request.POST)
+            if user_form.is_valid():
+                user_update = user_form.save(commit=False)
+                user_update.user = request.user
+                user_update.save()
+            else:
+                user_form = ProfileForm()
         
         context = {
             'user_info': user_info,
