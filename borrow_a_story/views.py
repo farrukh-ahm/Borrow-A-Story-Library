@@ -111,5 +111,28 @@ class UserProfile(View):
         return render(request, 'profile.html', context)
 
     def post(self, request, *args, **kwargs):
-        user = User.objects.filter(username=reque.user)
-        user_info = user.user.all()
+        # user = User.objects.filter(username=request.user)
+        # user_info = user.user.all()
+        try:
+            queryset = User_Detail.objects.all()
+            user_info = get_object_or_404(queryset, user=request.user)
+        except:
+            queryset = []
+            user_info = {'address': 'No details', 'contact_no': 'No details'}
+        # user_info = get_object_or_404(queryset, user=request.user)
+        profile_form = ProfileForm()
+        user_form = ProfileForm(request.POST)
+        if user_form.is_valid():
+            user_update = user_form.save(commit=False)
+            user_update.user = request.user
+            user_update.save()
+        else:
+            user_form = ProfileForm()
+        
+        context = {
+            'user_info': user_info,
+            'profile_form': user_form,
+        }
+
+        return render(request, 'profile.html', context)
+        # return redirect(reverse('user_profile'))

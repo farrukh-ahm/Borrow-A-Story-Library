@@ -7,9 +7,6 @@
     <div class="col s12 m3 offset-m4 info-control">
         <p><b class="teal-text">Name:</b> {{ user.get_username }}</p>
     </div>
-    <!-- <div class="col s12 m3 offset-m3 info-control">
-        <p><b>E-mail Id: {{ user.email }}</b></p>
-    </div> -->
 </div>
 <div class="row">
     <div class="col s12 m3 offset-m4 info-control">
@@ -17,14 +14,61 @@
     </div>
 </div>
 
-
+<div class="row" id="">
+    <div class="col s12 m3 offset-m4 info-control">
+        <p><b class="teal-text">Address:</b> {{user_info.address }}</p>
+    </div>
+</div>
 <div class="row">
+    <div class="col s12 m3 offset-m4 info-control">
+        <p><b class="teal-text">Contact_no:</b> {{ user_info.contact_no }}</p>
+    </div>
+</div>
+<button data-target="modal1" class="btn modal-trigger">Edit</button>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Contact Info:</h4>
+      <div class="row">
+        <form class="col" method="POST">
+          <div class="row">
+            <div class="input-field col s12 m12">
+                <p>Address:</p>
+                {{profile_form.address}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 m12 left">
+                <!-- <input placeholder="{{user_info.contact_no}}" id="first_name" type="number" class="validate">
+                <label for="first_name">Contact No.</label> -->
+                <p>Contact No.</p>
+                {{profile_form.contact_no}}
+              </div>
+          </div>
+          <div class="row">
+            <div class="col modal-footer">
+                {% csrf_token %}
+                <div class="col s12 m6 push-m2"><button type="submit" class="btn btn-signup btn-lg modal-close">Save</button></div>
+                <div class="col s12 m6"><button type="reset" class="btn btn-lg modal-close">Cancel</button></div>
+            </div>
+          </div>
+        </form>
+    </div>
+    </div>
+    <!-- <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div> -->
+</div>
+
+<!-- <div class="row">
     <form class="col s12" method="POST">
       <div class="row">
-        <div class="input-field col s12 m3 offset-m4">
-            <textarea id="textarea1" class="materialize-textarea validate">{{user_info.address}}</textarea>
-            <label for="textarea1">Address:</label>
-        </div>
+        <div class="input-field col s12 m3 offset-m4"> -->
+            <!-- <textarea id="textarea1" class="materialize-textarea validate">{{user_info.address}}</textarea>
+            <label for="textarea1">Address:</label> -->
+            <!-- {{profile_form.address}} -->
+        <!-- </div>
       </div>
       <div class="row">
         <div class="input-field col s12 m3 offset-m4">
@@ -38,6 +82,6 @@
         </div>
       </div>
     </form>
-  </div>
+</div> -->
         
 {% endblock %}
