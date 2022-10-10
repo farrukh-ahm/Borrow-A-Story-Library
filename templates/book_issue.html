@@ -29,8 +29,6 @@
         <p>Borrowing as: {{ user.username }}</p>
     </div>
     <form action="" class="col s6 m6 offset-m3" method="POST">
-        <!-- <label for="username">Borrowing As:</label>
-        <input type="text" value="{{ user.username }}" id="username"> -->
         {{form}}
         {% csrf_token %}
         <button type="submit" class="btn btn-signup btn-lg">Submit</button>

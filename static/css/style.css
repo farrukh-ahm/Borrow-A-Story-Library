@@ -12,12 +12,17 @@
 
 
 #logged-user{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    margin-top: 1em;
+    /* background-color: aquamarine; */
 }
 
 .manual-padding-cards{
     margin-bottom: 5rem;
+}
+
+
+.info-control{
+    /* width: 20%; */
+    border: 1px solid rgb(93, 240, 183);
+    border-radius: 5px;
 }

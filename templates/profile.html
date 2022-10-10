@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="row" id="">
+    <div class="col s12 m3 offset-m4 info-control">
+        <p><b class="teal-text">Name:</b> {{ user.get_username }}</p>
+    </div>
+    <!-- <div class="col s12 m3 offset-m3 info-control">
+        <p><b>E-mail Id: {{ user.email }}</b></p>
+    </div> -->
+</div>
+<div class="row">
+    <div class="col s12 m3 offset-m4 info-control">
+        <p><b class="teal-text">E-mail Id:</b> {{ user.email }}</p>
+    </div>
+</div>
+
+
+<div class="row">
+    <form class="col s12" method="POST">
+      <div class="row">
+        <div class="input-field col s12 m3 offset-m4">
+            <textarea id="textarea1" class="materialize-textarea validate">{{user_info.address}}</textarea>
+            <label for="textarea1">Address:</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m3 offset-m4">
+            <input placeholder="{{user_info.contact_no}}" id="first_name" type="number" class="validate">
+            <label for="first_name">Contact No.</label>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m3 offset-m4">
+            <button type="submit" class="btn btn-signup btn-lg">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+        
+{% endblock %}

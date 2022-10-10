@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views import generic, View
-from .models import Author, Book, Issue
-from .forms import IssueForm
+from .models import Author, Book, Issue, User_Detail
+from .forms import IssueForm, ProfileForm
 import random
 
 
@@ -89,3 +89,27 @@ class BookReturn(View):
         }
 
         return render(request, 'book_return.html', context)
+
+
+class UserProfile(View):
+
+    def get(self, request, *args, **kwargs):
+        try:
+            queryset = User_Detail.objects.all()
+            user_info = get_object_or_404(queryset, user=request.user)
+        except:
+            queryset = []
+            user_info = {'address': 'No details', 'contact_no': 'No details'}
+        # user_info = get_object_or_404(queryset, user=request.user)
+        profile_form = ProfileForm()
+
+        context = {
+            'user_info': user_info,
+            'profile_form': profile_form,
+        }
+
+        return render(request, 'profile.html', context)
+
+    def post(self, request, *args, **kwargs):
+        user = User.objects.filter(username=reque.user)
+        user_info = user.user.all()
