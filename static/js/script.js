@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
      let navbar = document.querySelectorAll('.sidenav');
      M.Sidenav.init(navbar);
 
+     // Carousel
+    let carousel = document.querySelectorAll('.carousel');
+    M.Carousel.init(carousel);
+
      // Modal
      let popOp = document.querySelectorAll('.modal');
      let modal = M.Modal.init(popOp);

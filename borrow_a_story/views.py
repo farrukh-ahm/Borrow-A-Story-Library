@@ -103,9 +103,14 @@ class UserProfile(View):
         # user_info = get_object_or_404(queryset, user=request.user)
         profile_form = ProfileForm()
 
+        # queryset2 = Issue.objects.all()
+        borrowed_books = Issue.objects.filter(issued_to=request.user, return_status=False)
+        # print(borrowed_books)
+
         context = {
             'user_info': user_info,
             'profile_form': profile_form,
+            'borrowed_books': borrowed_books,
         }
 
         return render(request, 'profile.html', context)

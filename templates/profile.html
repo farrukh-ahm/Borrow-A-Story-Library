@@ -3,6 +3,12 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
+<div class="row">
+  <div class="col s12 m6 offset-m2">
+      <h3 class="teal-text">Profile:</h3>
+  </div>
+</div>
+
 <div class="row" id="">
     <div class="col s12 m3 offset-m4 info-control">
         <p><b class="teal-text">Name:</b> {{ user.get_username }}</p>
@@ -30,6 +36,25 @@
     </div>
 </div>
 
+
+{% if borrowed_books.count %}
+<div class="row">
+  <div class="col s12 m6 offset-m2">
+      <h4 class="teal-text">Books You Borrowed:</h4>
+  </div>
+</div>
+{% endif %}
+<div class="row">
+  <div class="col s12 m6 offset-m3">
+    <div class="carousel">
+      {% for book in borrowed_books %}
+      <a class="carousel-item" href="#one!"><img src='{{book.book.featured_image.url}}'></a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
     <div class="modal-content">
@@ -44,8 +69,6 @@
           </div>
           <div class="row">
             <div class="input-field col s12 m12 left">
-                <!-- <input placeholder="{{user_info.contact_no}}" id="first_name" type="number" class="validate">
-                <label for="first_name">Contact No.</label> -->
                 <p>Contact No.</p>
                 {{profile_form.contact_no}}
               </div>
@@ -60,32 +83,8 @@
         </form>
     </div>
     </div>
-    <!-- <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div> -->
 </div>
 
-<!-- <div class="row">
-    <form class="col s12" method="POST">
-      <div class="row">
-        <div class="input-field col s12 m3 offset-m4"> -->
-            <!-- <textarea id="textarea1" class="materialize-textarea validate">{{user_info.address}}</textarea>
-            <label for="textarea1">Address:</label> -->
-            <!-- {{profile_form.address}} -->
-        <!-- </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12 m3 offset-m4">
-            <input placeholder="{{user_info.contact_no}}" id="first_name" type="number" class="validate">
-            <label for="first_name">Contact No.</label>
-          </div>
-      </div>
-      <div class="row">
-        <div class="col s12 m3 offset-m4">
-            <button type="submit" class="btn btn-signup btn-lg">Save</button>
-        </div>
-      </div>
-    </form>
-</div> -->
+
         
 {% endblock %}
