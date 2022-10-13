@@ -34,7 +34,18 @@
                             <a href="{% url 'account_login' %}" class="right-align lime-text text-lighten-1">LogIn</a>
                         {% endif %}
                         {% if user.is_authenticated %}
-                                <a href="#" class=""><i class="small material-icons pink-text text-accent-1">cloud_queue</i></a>
+                            <form class="s12" action="{% url 'bookmarked_books' book.slug %}" method="POST">
+                                {% csrf_token %}
+                                {% if user.id in book.bookmarked.id %}
+                                <button type="submit" name="bookmark" value="{{book.slug}}" class="btn-flat teal-text">
+                                    <i class="material-icons">cloud</i>
+                                </button>
+                                {% else %}
+                                <button type="submit" name="bookmarked" value="{{book.slug}}" class="btn-flat teal-text">
+                                    <i class="material-icons">cloud_queue</i>
+                                </button>
+                                {% endif %}
+                            </form>
                         {% endif %}
                     </div>
                 </div>

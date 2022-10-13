@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views import generic, View
 from .models import Author, Book, Issue, User_Detail
 from .forms import IssueForm, ProfileForm
+from django.http import HttpResponseRedirect
 import random
 
 
@@ -10,12 +11,6 @@ class BookCatalogue(generic.ListView):
     paginate_by = 9
     template_name = 'index.html'
 
-    # def get_queryset(self):
-    #     # user = User.objects.get(username=self.kwargs['username'])
-    #     book = Book.objects.all()
-    #     issue = book.issue.filter(issued_to=request.user.get_username())
-    #     return issue
-
 
 
 class BookIssue(View):
@@ -23,16 +18,16 @@ class BookIssue(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Book.objects.all()
         book = get_object_or_404(queryset, slug=slug)
-        # issue = book.issue.filter(issued_to=request.user)
-        # issuer = False
-        # if book.issue.filter(issued_to=self.request.user).exists():
-        #     issuer = True
         form = IssueForm()
+
+        bookmarked = False
+        if book.bookmarked.filter(id=self.request.user.id).exists():
+            bookmarked = True
+
         context = {
             'book': book,
-            # 'issue': issue,
             'form': form,
-            # 'issuer': issuer
+            'bookmarked': bookmarked,
         }
 
         return render(request, 'book_issue.html', context)
@@ -51,11 +46,16 @@ class BookIssue(View):
             book.save()
         else:
             form_content = IssueForm()
+
+        bookmarked = False
+        if book.bookmarked.filter(id=self.request.user.id).exists():
+            bookmarked = True
         
         context = {
             'book': book,
             'issue': issue,
             'form': form_content,
+            'bookmarked': bookmarked,
         }
 
         return render(request, 'book_issue.html', context)
@@ -77,15 +77,17 @@ class BookReturn(View):
         book = get_object_or_404(queryset, slug=slug)
         issue = book.issue.filter(return_status=False)
         book.available = True
-        # issue.return_status = True
         issue.update(return_status=True)
-        # issued.book = book
-        # issued.save()
         book.save()
+
+        bookmarked = False
+        if book.bookmarked.filter(id=self.request.user.id).exists():
+            bookmarked = True
 
         context = {
             'book': book,
             'random_books': random_books,
+            'bookmarked': bookmarked,
         }
 
         return render(request, 'book_return.html', context)
@@ -106,11 +108,17 @@ class UserProfile(View):
         # queryset2 = Issue.objects.all()
         borrowed_books = Issue.objects.filter(issued_to=request.user, return_status=False)
         # print(borrowed_books)
+        book_queryset = Book.objects.all()
+        bookmarks = []
+        for book in book_queryset:
+            if book.bookmarked.filter(id=request.user.id).exists():
+                bookmarks.append(book)
 
         context = {
             'user_info': user_info,
             'profile_form': profile_form,
             'borrowed_books': borrowed_books,
+            'bookmarks': bookmarks,
         }
 
         return render(request, 'profile.html', context)
@@ -141,11 +149,30 @@ class UserProfile(View):
                 user_update.save()
             else:
                 user_form = ProfileForm()
-        
+            
+        for book in book_queryset:
+            if book.bookmarked.filter(id=request.user.id).exists():
+                bookmarks.append(book)
+ 
         context = {
             'user_info': user_info,
             'profile_form': user_form,
+            'bookmarks': bookmarks,
         }
 
         return render(request, 'profile.html', context)
         # return redirect(reverse('user_profile'))
+
+
+class Bookmark(View):
+    
+    def post(self, request, slug):
+        queryset = Book.objects.all()
+        book = get_object_or_404(queryset, slug=slug)
+
+        if book.bookmarked.filter(id=request.user.id).exists():
+            book.bookmarked.remove(request.user)
+        else:
+            book.bookmarked.add(request.user)
+
+        return HttpResponseRedirect(reverse('home'))
