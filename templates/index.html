@@ -36,15 +36,17 @@
                         {% if user.is_authenticated %}
                             <form class="s12" action="{% url 'bookmarked_books' book.slug %}" method="POST">
                                 {% csrf_token %}
-                                {% if user.id in book.bookmarked.id %}
-                                <button type="submit" name="bookmark" value="{{book.slug}}" class="btn-flat teal-text">
-                                    <i class="material-icons">cloud</i>
-                                </button>
+                                {% for bookmark in book.bookmarked.all %}
+                                    {% if bookmark.id == user.id %}
+                                    <button type="submit" name="bookmark" value="{{book.slug}}" class="btn-flat teal-text">
+                                        <i class="material-icons">cloud</i>
+                                    </button>
                                 {% else %}
                                 <button type="submit" name="bookmarked" value="{{book.slug}}" class="btn-flat teal-text">
                                     <i class="material-icons">cloud_queue</i>
                                 </button>
                                 {% endif %}
+                                {% endfor %}
                             </form>
                         {% endif %}
                     </div>

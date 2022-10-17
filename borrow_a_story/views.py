@@ -7,10 +7,19 @@ import random
 
 
 class BookCatalogue(generic.ListView):
+    model = Book
     queryset = Book.objects.order_by('title')
     paginate_by = 9
     template_name = 'index.html'
 
+    # def get_queryset(self):
+    #     queryset = Book.objects.order_by('title').filter(id=1) 
+        # book = get_object_or_404(queryset, slug=self.slug)
+        # bookmarked = []
+        # for bookmark in queryset.bookmarked.all():
+        #     if bookmark.username == request.user.id:
+        #         bookmarked.append(bookmark)
+        # return bookmarked
 
 
 class BookIssue(View):
@@ -20,9 +29,9 @@ class BookIssue(View):
         book = get_object_or_404(queryset, slug=slug)
         form = IssueForm()
 
-        bookmarked = False
-        if book.bookmarked.filter(id=self.request.user.id).exists():
-            bookmarked = True
+        # bookmarked = False
+        # if book.bookmarked.filter(id=self.request.user.id).exists():
+        #     bookmarked = True
 
         context = {
             'book': book,
@@ -47,9 +56,9 @@ class BookIssue(View):
         else:
             form_content = IssueForm()
 
-        bookmarked = False
-        if book.bookmarked.filter(id=self.request.user.id).exists():
-            bookmarked = True
+        # bookmarked = False
+        # if book.bookmarked.filter(id=self.request.user.id).exists():
+        #     bookmarked = True
         
         context = {
             'book': book,
@@ -80,9 +89,9 @@ class BookReturn(View):
         issue.update(return_status=True)
         book.save()
 
-        bookmarked = False
-        if book.bookmarked.filter(id=self.request.user.id).exists():
-            bookmarked = True
+        # bookmarked = False
+        # if book.bookmarked.filter(id=self.request.user.id).exists():
+        #     bookmarked = True
 
         context = {
             'book': book,
@@ -176,3 +185,17 @@ class Bookmark(View):
             book.bookmarked.add(request.user)
 
         return HttpResponseRedirect(reverse('home'))
+
+
+class Test(View):
+
+    def get(self, request):
+        books = Book.objects.all()
+        bookmarks = []
+        for book in books:
+            bookmarks.append(book.bookmarked.all())
+        context = {
+            'books': books,
+            'bookmarks': bookmarks,
+        }
+        return render(request, 'test.html', context)
