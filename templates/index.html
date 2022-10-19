@@ -38,13 +38,13 @@
                                 {% csrf_token %}
 
                                     {% if user.id in book.user_bookmarked %}
-                                        <button type="submit" name="bookmark" value="{{book.slug}}" class="btn-flat teal-text">
-                                            <i class="material-icons">cloud</i>
+                                        <button type="submit" name="bookmark" value="{{book.slug}}" class="btn-flat pink-text text-accent-1">
+                                            <i class="material-icons">favorite</i>
                                         </button>
 
                                     {% else %}
                                     <button type="submit" name="bookmarked" value="{{book.slug}}" class="btn-flat teal-text">
-                                        <i class="material-icons">cloud_queue</i>
+                                        <i class="material-icons">favorite_border</i>
                                     </button>
                                     {% endif %}
 
