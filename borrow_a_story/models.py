@@ -31,6 +31,13 @@ class Book(models.Model):
     def __str__(self):
         return f"{self.title}: {self.author}"
 
+    def user_bookmarked(self):
+        tests = self.bookmarked.all()
+        li = []
+        for test in tests:
+            li.append(test.id)
+        return li
+
 
 class Issue(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='issue')

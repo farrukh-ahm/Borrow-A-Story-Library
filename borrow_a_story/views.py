@@ -12,14 +12,6 @@ class BookCatalogue(generic.ListView):
     paginate_by = 9
     template_name = 'index.html'
 
-    # def get_queryset(self):
-    #     queryset = Book.objects.order_by('title').filter(id=1) 
-        # book = get_object_or_404(queryset, slug=self.slug)
-        # bookmarked = []
-        # for bookmark in queryset.bookmarked.all():
-        #     if bookmark.username == request.user.id:
-        #         bookmarked.append(bookmark)
-        # return bookmarked
 
 
 class BookIssue(View):
