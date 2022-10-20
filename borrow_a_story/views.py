@@ -13,17 +13,6 @@ class BookCatalogue(generic.ListView):
     template_name = 'index.html'
 
 
-class SearchPage(generic.ListView):
-    model = Book
-    template_name = 'search.html'
-    paginate_by = 9
-    # context_object_name = 'books'
-
-    # def get_queryset(self, *args, **kwargs):
-    #     return Book.objects.filter(slug__icontains=self.kwargs.get('title'))
-
-
-
 class BookIssue(View):
 
     def get(self, request, slug, *args, **kwargs):

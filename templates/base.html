@@ -25,7 +25,10 @@
                 {% endif %} -->
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/" class="teal-text text-darken-4">Home</a></li>
-                    {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <li><a href="{% url 'admin:index' %}" class="teal-text text-darken-4">Admin</a></li>
+                        <li><a href="{% url 'account_logout' %}" class="teal-text text-darken-4">LogOut</a></li>
+                    {% elif user.is_authenticated %}
                         <li><a href="{% url 'user_profile' %}" class="teal-text text-darken-4">Profile</a></li>
                         <li><a href="{% url 'account_logout' %}" class="teal-text text-darken-4">LogOut</a></li>
                     {% else %}

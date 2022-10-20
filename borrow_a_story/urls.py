@@ -8,5 +8,4 @@ urlpatterns = [
     path('profile/', views.UserProfile.as_view(), name='user_profile'),
     path('bookmarked/<slug:slug>', views.Bookmark.as_view(), name='bookmarked_books'),
     path('test/', views.Test.as_view(), name='test'),
-    path('search/', views.SearchPage.as_view(), name='search'),
 ]
