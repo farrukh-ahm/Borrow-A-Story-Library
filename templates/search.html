@@ -5,7 +5,7 @@
 
     <h2 class="center-align page-title teal-text text-darken-4">Our Catalogue</h2>
     <div class="row">
-        <form class="col s12 m3 right" action="{% url 'search' %}" method="POST">
+        <form class="col s12 m3 right" action="{% url 'search.html' %}" method="POST">
                 <div class="input-field">
                     <input id="search" type="search" name="search" required>
                     {% csrf_token %}
@@ -18,7 +18,7 @@
     </div>
             
     <div class="row">
-        {% for book in book_list %}
+        {% for book in books %}
             <div class="col s12 m4">
                 <div class="card">
                     <div class="card-image">
