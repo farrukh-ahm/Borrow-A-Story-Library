@@ -34,7 +34,7 @@ class BookIssue(View):
     def post(self, request, slug, *args, **kwargs):
         queryset = Book.objects.all()
         book = get_object_or_404(queryset, slug=slug)
-        issue = book.issue.all()
+        # issue = book.issue.all()
         form_content = IssueForm(request.POST)
         if form_content.is_valid():
             book.available = False
@@ -46,17 +46,23 @@ class BookIssue(View):
         else:
             form_content = IssueForm()
 
-        # bookmarked = False
-        # if book.bookmarked.filter(id=self.request.user.id).exists():
-        #     bookmarked = True
-        
+        # ------------------------------
+        random_books = []
+        last = queryset.count()
+        while len(random_books) < 3:
+            random_no = random.randint(0, last-1)
+            fetch_random = Book.objects.all()[random_no]
+            if fetch_random not in random_books:
+                random_books.append(fetch_random)
+        # ------------------------------
         context = {
             'book': book,
-            'issue': issue,
+            # 'issue': issue,
             'form': form_content,
+            'random_books': random_books,
         }
 
-        return render(request, 'book_issue.html', context)
+        return render(request, 'issued.html', context)
 
 
 class BookReturn(View):
