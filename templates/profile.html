@@ -44,14 +44,12 @@
     </div>
 </div>
 
-
 {% if borrowed_books.count %}
 <div class="row">
   <div class="col s12 m6 offset-m2">
       <h4 class="teal-text">Books You Borrowed:</h4>
   </div>
 </div>
-{% endif %}
 <div class="row">
   <div class="col s12 m6 offset-m3">
     <div class="carousel">
@@ -61,6 +59,7 @@
     </div>
   </div>
 </div>
+{% endif %}
 
 {% if bookmarks|length %}
   <div class="row">
@@ -83,35 +82,35 @@
 
 {% endif %}
 
-
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Contact Info:</h4>
-      <div class="row">
-        <form class="col" method="POST">
-          <div class="row">
-            <div class="input-field col s12 m12">
-                <p>Address:</p>
-                {{profile_form.address}}
+  <div class="modal-content">
+    <h4>Contact Info:</h4>
+    <div class="row">
+      <form class="col" method="POST">
+        <div class="row">
+          <div class="input-field col s12 m12">
+              <p>Address:</p>
+              {{profile_form.address}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 m12 left">
+              <p>Contact No.</p>
+              {{profile_form.contact_no}}
             </div>
+        </div>
+        <div class="row">
+          <div class="col modal-footer">
+              {% csrf_token %}
+              <div class="col s12 m6 push-m2"><button type="submit" class="btn btn-signup btn-lg modal-close">Save</button></div>
+              <div class="col s12 m6"><button type="reset" class="btn btn-lg modal-close">Cancel</button></div>
           </div>
-          <div class="row">
-            <div class="input-field col s12 m12 left">
-                <p>Contact No.</p>
-                {{profile_form.contact_no}}
-              </div>
-          </div>
-          <div class="row">
-            <div class="col modal-footer">
-                {% csrf_token %}
-                <div class="col s12 m6 push-m2"><button type="submit" class="btn btn-signup btn-lg modal-close">Save</button></div>
-                <div class="col s12 m6"><button type="reset" class="btn btn-lg modal-close">Cancel</button></div>
-            </div>
-          </div>
-        </form>
+        </div>
+      </form>
     </div>
-    </div>
+  </div>
 </div>
+
         
 {% endblock %}

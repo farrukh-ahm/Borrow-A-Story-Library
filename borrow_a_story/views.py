@@ -94,17 +94,6 @@ class UserProfile(View):
 
     def get(self, request, *args, **kwargs):
         if request.user.id:
-            try:
-                queryset = User_Detail.objects.all()
-                user_info = get_object_or_404(queryset, user=request.user)
-            except:
-                queryset = []
-                user_info = {
-                    'address': 'No details',
-                    'contact_no': 'No details'
-                    }
-            profile_form = ProfileForm()
-
             borrowed_books = Issue.objects.filter(
                 issued_to=request.user,
                 return_status=False
@@ -114,6 +103,15 @@ class UserProfile(View):
             for book in book_queryset:
                 if book.bookmarked.filter(id=request.user.id).exists():
                     bookmarks.append(book)
+            try:
+                queryset = User_Detail.objects.all()
+                user_info = get_object_or_404(queryset, user=request.user)
+            except:
+                user_info = {
+                    'address': 'No details',
+                    'contact_no': 'No details'
+                    }
+            profile_form = ProfileForm()
 
             context = {
                 'user_info': user_info,
@@ -148,7 +146,13 @@ class UserProfile(View):
                 user_update.save()
             else:
                 user_form = ProfileForm()
-            
+
+        borrowed_books = Issue.objects.filter(
+                issued_to=request.user,
+                return_status=False
+                )
+        book_queryset = Book.objects.all()
+        bookmarks = []    
         for book in book_queryset:
             if book.bookmarked.filter(id=request.user.id).exists():
                 bookmarks.append(book)
@@ -156,6 +160,7 @@ class UserProfile(View):
         context = {
             'user_info': user_info,
             'profile_form': user_form,
+            'borrowed_books': borrowed_books,
             'bookmarks': bookmarks,
         }
 
