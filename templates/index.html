@@ -33,7 +33,7 @@
                                 {% endfor%}
                             {% endif %}
                         {% else %}
-                            <a href="{% url 'account_login' %}" class="right-align lime-text text-lighten-1">LogIn</a>
+                            <a href="{% url 'account_login' %}" class="right-align light-green-text text-lighten-1">Login to view</a>
                         {% endif %}
                         {% if user.is_authenticated %}
                             <form class="s12" action="{% url 'bookmarked_books' book.slug %}" method="POST">

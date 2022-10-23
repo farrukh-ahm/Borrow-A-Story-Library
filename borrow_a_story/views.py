@@ -84,10 +84,6 @@ class BookReturn(View):
         issue.update(return_status=True)
         book.save()
 
-        # bookmarked = False
-        # if book.bookmarked.filter(id=self.request.user.id).exists():
-        #     bookmarked = True
-
         context = {
             'book': book,
             'random_books': random_books,
