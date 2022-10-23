@@ -20,9 +20,6 @@
             <div class="nav-wrapper lime lighten-1">
                 <a href="#!" class="brand-logo  teal-text text-darken-4" id="title">Borrow A Story!</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <!-- {% if user.is_authenticated %}
-                    <span id="logged-user" class="teal-text">Welcome {{ user.get_username }}</span>
-                {% endif %} -->
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/" class="teal-text text-darken-4">Home</a></li>
                     {% if user.is_superuser %}
@@ -70,6 +67,7 @@
 
     <!-- Materialize Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Local JS File -->
     <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

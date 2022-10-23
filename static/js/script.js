@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-     // NAVBAR INT
+     // NAVBAR INITIALISATION
      let navbar = document.querySelectorAll('.sidenav');
      M.Sidenav.init(navbar);
 
-     // Carousel
+     // CAROUSEL INITIALISATION
     let carousel = document.querySelectorAll('.carousel');
     M.Carousel.init(carousel);
 
-     // Modal
+     // MODAL INITIALISATION
      let popOp = document.querySelectorAll('.modal');
      let modal = M.Modal.init(popOp);
      let modalTrigger = document.getElementsByClassName("modal-trigger")
@@ -22,5 +22,3 @@ document.addEventListener('DOMContentLoaded', function() {
      }
      
   });
-
-  console.log("connected")

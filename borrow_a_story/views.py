@@ -20,10 +20,6 @@ class BookIssue(View):
         book = get_object_or_404(queryset, slug=slug)
         form = IssueForm()
 
-        # bookmarked = False
-        # if book.bookmarked.filter(id=self.request.user.id).exists():
-        #     bookmarked = True
-
         context = {
             'book': book,
             'form': form,
@@ -34,7 +30,6 @@ class BookIssue(View):
     def post(self, request, slug, *args, **kwargs):
         queryset = Book.objects.all()
         book = get_object_or_404(queryset, slug=slug)
-        # issue = book.issue.all()
         form_content = IssueForm(request.POST)
         if form_content.is_valid():
             book.available = False
@@ -46,6 +41,7 @@ class BookIssue(View):
         else:
             form_content = IssueForm()
 
+        # Generating list of random books
         # ------------------------------
         random_books = []
         last = queryset.count()
@@ -57,7 +53,6 @@ class BookIssue(View):
         # ------------------------------
         context = {
             'book': book,
-            # 'issue': issue,
             'form': form_content,
             'random_books': random_books,
         }
@@ -69,6 +64,8 @@ class BookReturn(View):
 
     def get(self, request, slug, *args, **kwargs):
         queryset = Book.objects.all()
+
+        # Generating list of random books
         # ------------------------------
         random_books = []
         last = queryset.count()
@@ -78,6 +75,7 @@ class BookReturn(View):
             if fetch_random not in random_books:
                 random_books.append(fetch_random)
         # ------------------------------
+
         book = get_object_or_404(queryset, slug=slug)
         issue = book.issue.filter(return_status=False)
         book.available = True
@@ -101,10 +99,16 @@ class UserProfile(View):
                 user_info = get_object_or_404(queryset, user=request.user)
             except:
                 queryset = []
-                user_info = {'address': 'No details', 'contact_no': 'No details'}
+                user_info = {
+                    'address': 'No details',
+                    'contact_no': 'No details'
+                    }
             profile_form = ProfileForm()
 
-            borrowed_books = Issue.objects.filter(issued_to=request.user, return_status=False)
+            borrowed_books = Issue.objects.filter(
+                issued_to=request.user,
+                return_status=False
+                )
             book_queryset = Book.objects.all()
             bookmarks = []
             for book in book_queryset:
@@ -123,8 +127,6 @@ class UserProfile(View):
             return render(request, 'profile.html')
 
     def post(self, request, *args, **kwargs):
-        # user = User.objects.filter(username=request.user)
-        # user_info = user.user.all()
         try:
             queryset = User_Detail.objects.all()
             user_info = get_object_or_404(queryset, user=request.user)
@@ -137,9 +139,7 @@ class UserProfile(View):
             else:
                 user_form = ProfileForm()
         except:
-            # queryset = []
             user_info = {'address': 'No details', 'contact_no': 'No details'}
-            # user_info = get_object_or_404(queryset, user=request.user)
             profile_form = ProfileForm()
             user_form = ProfileForm(request.POST)
             if user_form.is_valid():
@@ -160,7 +160,6 @@ class UserProfile(View):
         }
 
         return render(request, 'profile.html', context)
-        # return redirect(reverse('user_profile'))
 
 
 class Bookmark(View):

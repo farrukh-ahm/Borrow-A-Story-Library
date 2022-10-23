@@ -1,10 +1,5 @@
-/* img{
-    max-height: 30em;
-} */
-
 #title{
     padding-left: 1.5rem;
-    /* font-size: 1.5rem; */
 }
 
 .page-title{
@@ -14,7 +9,6 @@
 
 #logged-user{
     margin-top: 1em;
-    /* background-color: aquamarine; */
 }
 
 .manual-padding-cards{
@@ -23,7 +17,6 @@
 
 
 .info-control{
-    /* width: 20%; */
     border: 1px solid rgb(93, 240, 183);
     border-radius: 5px;
 }
