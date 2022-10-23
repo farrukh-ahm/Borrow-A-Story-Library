@@ -11,10 +11,10 @@
       <div class="card">
         <div class="card-image">
           <img src="{{ book.featured_image.url }}">
-          <span class="card-title">{{ book.title }}</span>
         </div>
         <div class="card-content">
-          <p>{{ book.excerpt }}</p>
+          <h5 class="left-align purple-text text-lighten-1">{{ book.title }}</h5><br>
+          <p>{{ book.excerpt }}</p><br>
           <p class="left-align"><b>Author:</b> {{ book.author }}</p>
           <p class="left-align"><b>Publish year:</b> {{ book.publish_year }}</p>
           <p class="left-align"><b>Shelf:</b> {{ book.shelf }}</p>
@@ -31,19 +31,25 @@
     <form action="" class="col s6 m6 offset-m3" method="POST">
         {{form}}
         {% csrf_token %}
-        <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+        <button type="submit" class="btn btn-signup btn-lg">Borrow</button>
     </form>
   </div>
   {% else %}
-    {% if book.issue.issued_to == User.username %}
-    <div class="row">
-      <div class="col s6 m6 offset-m3">
-        <a href="{% url 'book_return' book.slug %}" class="btn right-align">Return</a>
+    {% for issue in book.issue.reverse|slice:":1" %}
+      {% if issue.issued_to == user %}
+      <div class="row">
+        <div class="col s6 m6 offset-m3">
+          <a href="{% url 'book_return' book.slug %}" class="btn right-align">Return</a>
+        </div>
       </div>
-    </div>
-    {% else %}
-        <p class="right lime-text text-lighten-1">Not Available</p>
-    {% endif %}
+      {% else %}
+      <div class="row">
+        <div class="col s6 m6 offset-m3">
+          <p class="red-text text-lighten-1"><b>Not Available</b></p>
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
   {% endif %}
 
 {% else %}

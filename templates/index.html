@@ -12,9 +12,9 @@
                 <div class="card">
                     <div class="card-image">
                         <img src="{{ book.featured_image.url }}" class="image-control">
-                        <span class="card-title">{{book.title}}</span>
                     </div>
                     <div class="card-content">
+                        <h6 class="left-align purple-text text-lighten-1">{{ book.title }}</h6>
                         <p>Author: {{ book.author }}</p>
                         <p>Published: {{ book.publish_year }}</p>
                         <p>Shelf: {{ book.shelf }}</p>
@@ -22,13 +22,13 @@
                     <div class="card-action">
                         {% if user.is_authenticated %}
                             {% if book.available %}
-                                <a href="{% url 'book_issue' book.slug %}" class="right lime-text text-lighten-1">Borrow</a>
+                                <a href="{% url 'book_issue' book.slug %}" class="btn right cyan darken-1">Borrow</a>
                             {% else %}
                                 {% for issue in book.issue.reverse|slice:":1" %}
                                     {% if issue.issued_to == user %}
                                     <a href="{% url 'book_issue' book.slug %}" class="btn right">Return</a>
                                     {% else %}
-                                        <p class="right lime-text text-lighten-1">Not Available</p>
+                                        <p class="right red-text text-lighten-1">Not Available</p>
                                     {% endif %}
                                 {% endfor%}
                             {% endif %}
