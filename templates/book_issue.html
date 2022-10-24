@@ -35,6 +35,7 @@
     </form>
   </div>
   {% else %}
+  <!-- Get the latest data from the 'issue' database -->
     {% for issue in book.issue.reverse|slice:":1" %}
       {% if issue.issued_to == user %}
       <div class="row">

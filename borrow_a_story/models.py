@@ -46,11 +46,6 @@ class Issue(models.Model):
     return_by = models.DateField()
     return_status = models.BooleanField(default=False)
 
-    # def return_date(self, *args, **kwargs):
-    #     if self.return_by is None:
-    #         self.return_by = self.issued_on.date() + datetime.timedelta(days=30)
-    #     return self.return_by
-
     class Meta:
         ordering = ['issued_on']
 

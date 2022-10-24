@@ -104,11 +104,13 @@ class UserProfile(View):
                     }
             profile_form = ProfileForm()
 
+            # Get list of borrowed books by the user
             borrowed_books = Issue.objects.filter(
                 issued_to=request.user,
                 return_status=False
                 )
-            
+
+            # Get list of books bookmarked by user
             book_queryset = Book.objects.all()
             bookmarks = []
             for book in book_queryset:
@@ -149,16 +151,19 @@ class UserProfile(View):
             else:
                 user_form = ProfileForm()
 
+        # Get list of borrowed books by the user
         borrowed_books = Issue.objects.filter(
                 issued_to=request.user,
                 return_status=False
                 )
+
+        # Get list of books bookmarked by user
         book_queryset = Book.objects.all()
-        bookmarks = []    
+        bookmarks = []
         for book in book_queryset:
             if book.bookmarked.filter(id=request.user.id).exists():
                 bookmarks.append(book)
- 
+
         context = {
             'user_info': user_info,
             'profile_form': user_form,
@@ -170,7 +175,7 @@ class UserProfile(View):
 
 
 class Bookmark(View):
-    
+
     def post(self, request, slug):
         queryset = Book.objects.all()
         book = get_object_or_404(queryset, slug=slug)
@@ -181,19 +186,3 @@ class Bookmark(View):
             book.bookmarked.add(request.user)
 
         return HttpResponseRedirect(reverse('home'))
-
-
-class Test(View):
-
-    def get(self, request):
-        books = Book.objects.all()
-        bookmarks = []
-        for book in books:
-            bookmarks.append(book.bookmarked.all())
-        context = {
-            'books': books,
-            'bookmarks': bookmarks,
-        }
-        return render(request, 'test.html', context)
-
-
