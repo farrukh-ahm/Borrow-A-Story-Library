@@ -1,108 +1,207 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Borrow A Story!
+[View the live project here](https://borrow-a-story.herokuapp.com/)
 
-Welcome farrukh-ahm,
+## Introduction
+"Borrow a Story" is a website for a public library, which catalogues all its collection online. A visitor to the library can easily access the website and find out books they would be interested in, read the summary, look-up the shelf they can find it on and borrow it via the website only. All it takes is creting their account, which takes just a minute and they can be exploring the world of stories and information with the click of a button!
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+![Image of application responsiveness on different devices](./media/images/responsive.JPG)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
 
-## Gitpod Reminders
+## Table of Content
+ -  [UX/UI](#ux)
+    - [Site Purpose](#purpose])
+    - [Scope](#scope)
+    - [Target Audience](#audience)
+    - [User Stories](#stories)
+        1. [As an Admin](#admin)
+        1. [As a User](#user)
+    - [Design](#design)
+        1. [Framework](#framework)
+        1. [Schemas](#schemas)
+        1. [Color](#color)
+        1. [Imagery](#imagery)
+ - [Features](#features)
+    - [Present Features](#present)
+        1. [Navbar](#nav)
+        1. [Home Page](#home)
+        1. [Sign-up/Sign-in/Sign-out](#sign)
+        1. [Borrow Book](#borrow)
+        1. [Return Book](#return)
+        1. [Profile Page](#profile)
+    - [Future Features](#future)
+ - [Testing and Bug Fixes](#testing)
+ - [Technologies and Libraries Used](#tech)
+    1. [Main Language Used](#language)
+    1. [Python Library and API used](#api)
+    1. [Data Storage](#storage)
+ - [Development and Deployment](#deployment)
+ - [Credits and Acknowledgement](#credits)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+# UX/UI <a name="ux"></a>
+## Site Purpose <a name="purpose"></a>
+The purpose of this website is to provide a platform for both, the Library staff and the Library patrons, where they can access their desired objectives. A library staff can efficiently and convinently catalogue books available at the library, look-up the status of books whether it's available or has been borrowed by a library patron, and manage the patron's information.
+On the other hand, a library patron/user can convinently find the books they might be interested in, find the location in the library where the book is kept, and if available, borrow it easily via the website itself. 
 
-`python3 -m http.server`
+## Site Objectives
+1. Provide an appealing and user friendly website.
+1. Provide effective database maangement tools to the staffs.
+1. Provide ease-of-navigation throughout the website.
+1. Encourage more people to visit library by coalescing digital media with print media.
 
-A blue button should appear to click: _Make Public_,
+## Target Audience
+1. Regular visitors to the library.
+1. Reluctant visitors who wants to avoid the hassle of going to the counter and getting a book issued.
+1. Youngsters who are more comfortable with digital platforms.
+1. For every book lover out there.
+1. For everyone who wants to try out the public library.
 
-Another blue button should appear to click: _Open Browser_.
+## User Story
+ ### As An Admin
+   - I can add and update new books to the catalogue.
+   - I can view the complete borrow history of each book.
+   - I can check which books are currently borrowed by which user.
+   - I can check the return status of each book.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+ ### As a User
+   - I can register easily.
+   - I can check the book catalogue and where it is located in the library.
+   - I can read the book summary and borrow it easily.
+   - I can bookmark my favorite books to view them later.
 
-A blue button should appear to click: _Make Public_,
+## Design <br>
+ ### Framework <br><br>
+ 
+   #### Homepage: <br>
+ ![Wireframe of the homepage](./media/images/wireframe-one.png)
+ <br><br>
 
-Another blue button should appear to click: _Open Browser_.
+   #### Book Issue/Return Page: <br>
+ ![Wireframe of the issue/retrun](./media/images/wireframe-two.png)
+<br><br>
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+   #### Profile Page: <br>
+ ![Wireframe of the profile page](./media/images/wireframe-three.png)
+ <br><br>
 
-To log into the Heroku toolbelt CLI:
+## Database Schemas <br>
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+![Database schema](./media/images/database-schema.JPG)
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Color <br>
+The color pallets have been selected form the MaterializeCSS's library and are used to appropriately brighten the website and entice the users.
+<br><br>
 
-------
+![Color pallet](./media/images/color-pallets.jpg)
 
-## Release History
+## Typography <br>
+The fonts used in the website are the standard fonts provided by MaterializeCSS framework, which is Roboto 2.0
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+# Features
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+## Present Features
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+### Navbar
+The navbar is convinently constructed to display the website name, clicking on which will take you to the homepage. It also displays the links depending on the user viewing the website. If it's a new user, it will display the log-in and sign-up links, if the user is logged in, it will display the profile and log-out links, and to an admin, it will display the 'admin' link instead of the profile link, so that the admin can easily access the database.
+The navbar is also customised to wrap all the links into a burger menu for small-screen devices.
+<br>
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+Nav-bar as seen by a logged-out user:
+![Looged-out navbar](./media/images/nav-bar-loggedout.JPG)
+<br>
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+Nav-bar as seen by a logged-in user:
+![Logged-in navbar](./media/images/nav-bar-user.JPG)
+<br>
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+Nav-bar as seen by an admin:
+![Admin navbar](./media/images/nav-bar-admin.JPG)
+<br>
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+Burger Menu:
+![Burger menu](./media/images/burger-menu.JPG)
+<br><br>
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+### Homepage
+The hompage displays the catalogue of all the books at the library, and is paginated to show 9 books per page. The book information such as the title, author name, published year and the shelf it is kept on are all contained within the cards. The book-cards are also customised. If the user is logged-out, it'll ask them to log-in to see the detail. To a logged-in user, it'll show either of three options: Borrow, Return or Not-Availabe depending on the status of the book. This card also has the bookmark icon, which the user can interact with and bookmark them.
+<br><br>
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+Homepage as seen by a logged-out user:
+![Logged-out homepage](./media/images/homepage-loggedout.JPG)
+<br><br>
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+Homepage as seen by a logged-in user:
+![Logged-in homepage](./media/images/homepage-loggedin.JPG)
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+### Book Borrow/Return Page
+Upon clicking Borrow/Return button, the user is redirected to a new page where the user can read a brief summary of the book, and if they want to borrow it, they can just put in the date they are willing to return the book and borrow it directly. For returning, the same can be done, by just clicking the Return button, the databse will record the book as returned by the user.
+<br>
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+![Borrow the book](./media/images/issue-page-1.JPG)
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+![Borrow the book](./media/images/issue-page-2.JPG)
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+![Return the book](./media/images/return.JPG)
+<br>
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+### Book Issued/Returned Confirmation Page
+After borrowing/returning the book, the user is redirected to the confirmation page, which displays the confirmation message and, also, at the bottom shows a collection of few books from the catalogue which the user might be interested in. Hence, encouraging them to explore more and read more books.
+<br><br>
 
-------
+Book Borrowed Confirmation:
 
-## FAQ about the uptime script
+![Book Borrowed](./media/images/borrowed-1.JPG)
+<br><br>
 
-**Why have you added this script?**
+Book Returned Confirmation:
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+![Book Returned](./media/images/returned.JPG)
+<br><br>
 
-**How will this affect me?**
+Selection of Books from the Catalogue the User Might Be Interested In:
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+![Book Selection](./media/images/borrowed-2.JPG)
+<br><br>
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+### Profile
+The profile page displays the basic information of the user provided while registering, like user_name and e-mail address. It also has a section for contact information, which the user can fill, like address and phone number. This information is handled by the django's form element to update the database.
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+This page also displays the books which has been borrowed by the user and the books bookmarked by them.
+<br><br>
 
-**So….?**
+Bio Section:<br>
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+![User's Bio](./media/images/profile-bio.JPG)
+<br><br>
 
-**Can I opt out?**
+Borrowed Books Section:<br>
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+![Borrowed Books](./media/images/borrowed-books.JPG)
+<br><br>
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+Bookmarks:<br>
 
-**Anything more?**
+![Bookmarks](./media/images/bookmarks.JPG)
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
 
----
+### Sign-up/ Log-in/ Log-out
+The website's user authentication is taken care by the django-allauth service.
+<br>
 
-Happy coding!
+Sign-up page:<br>
+
+![User sign-up](./media/images/signup-page.JPG)
+<br><br>
+
+Sign-in page:<br>
+
+![User sign-in](./media/images/signin-page.JPG)
+<br><br>
+
+Sign-out page:<br>
+
+![User sign-out](./media/images/signout.JPG)
+
+## Features to Implement
+In the future, given more time to work on the website, I would like to implement the following features:
+- Book Search feature on the homepage.
+- Return/Explore buttons on the book catalogue on user's Profile page.
