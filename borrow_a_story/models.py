@@ -35,6 +35,7 @@ class Book(models.Model):
     def __str__(self):
         return f"{self.title}: {self.author}"
 
+    # Get a list of all the users who bookmarked particular book
     def user_bookmarked(self):
         tests = self.bookmarked.all()
         li = []
