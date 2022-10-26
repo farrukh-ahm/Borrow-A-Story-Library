@@ -4,13 +4,13 @@
 {% load crispy_forms_tags %}
 
 {% if user.is_authenticated %}
-  <h3 class="center-align page-title teal-text text-darken-4">Borrow This Book</h3>
+  <h3 class="center-align page-title teal-text text-darken-4">Borrow/Return</h3>
 
   <div class="row">
     <div class="col s12 m6 center-align offset-m3">
       <div class="card">
         <div class="card-image">
-          <img src="{{ book.featured_image.url }}">
+          <img src="{{ book.featured_image.url }}" alt="{{book.title}}">
         </div>
         <div class="card-content">
           <h5 class="left-align purple-text text-lighten-1">{{ book.title }}</h5><br>

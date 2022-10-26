@@ -54,7 +54,7 @@
   <div class="col s12 m6 offset-m3">
     <div class="carousel">
       {% for book in borrowed_books %}
-      <a class="carousel-item" href="#one!"><img src='{{book.book.featured_image.url}}'></a>
+      <a class="carousel-item" href="#one!"><img src='{{book.book.featured_image.url}}' alt="{{book.book.title}}"></a>
       {% endfor %}
     </div>
   </div>

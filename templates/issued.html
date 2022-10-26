@@ -9,7 +9,7 @@
     <div class="col s12 m6 center-align offset-m3 manual-padding-cards">
       <div class="card medium">
         <div class="card-image">
-          <img src="{{ book.featured_image.url }}">
+          <img src="{{ book.featured_image.url }}" alt="{{book.title}}">
         </div>
         <div class="card-content">
         <h5 class="left-align purple-text text-lighten-1">{{ book.title }}</h5><br>
@@ -35,7 +35,7 @@
         <div class="col s12 m4">
             <div class="card small">
                 <div class="card-image">
-                    <img src="{{ random_book.featured_image.url }}">
+                    <img src="{{ random_book.featured_image.url }}" alt="{{random_book.title}}">
                     <span class="card-title">{{ random_book.title }}</span>
                 </div>
                 <div class="card-content">
