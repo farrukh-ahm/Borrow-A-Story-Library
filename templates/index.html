@@ -7,6 +7,7 @@
     
             
     <div class="row">
+        <!-- Book Card -->
         {% for book in book_list %}
             <div class="col s12 m4">
                 <div class="card">
@@ -20,6 +21,7 @@
                         <p>Shelf: {{ book.shelf }}</p>
                     </div>
                     <div class="card-action">
+                        <!-- Action button when user logged-in and availability of book -->
                         {% if user.is_authenticated %}
                             {% if book.available %}
                                 <a href="{% url 'book_issue' book.slug %}" class="btn right cyan darken-1">Borrow</a>
@@ -32,9 +34,11 @@
                                     {% endif %}
                                 {% endfor%}
                             {% endif %}
+                        <!-- When user not logged-in -->
                         {% else %}
                             <a href="{% url 'account_login' %}" class="right-align light-green-text text-lighten-1">Login to view</a>
                         {% endif %}
+                        <!-- Bookmark Button -->
                         {% if user.is_authenticated %}
                             <form class="s12" action="{% url 'bookmarked_books' book.slug %}" method="POST">
                                 {% csrf_token %}
@@ -62,6 +66,7 @@
         {% endfor %}
     </div>
 
+    <!-- Pagination -->
     {% if is_paginated %}
 
     <ul class="pagination center">

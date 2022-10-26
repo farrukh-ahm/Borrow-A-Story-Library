@@ -4,7 +4,7 @@
 
 {% if user.is_authenticated %}
 <h3 class="center-align page-title teal-text text-darken-4">Hope You Enjoy!</h3>
-
+<!-- Book Card -->
 <div class="row">
     <div class="col s12 m6 center-align offset-m3 manual-padding-cards">
       <div class="card medium">
@@ -12,7 +12,7 @@
           <img src="{{ book.featured_image.url }}" alt="{{book.title}}">
         </div>
         <div class="card-content">
-        <h5 class="left-align purple-text text-lighten-1">{{ book.title }}</h5><br>
+        <h6 class="left-align purple-text text-lighten-1">{{ book.title }}</h6><br>
           <p class="left-align"><b>Author:</b> {{ book.author }}</p>
           <p class="left-align"><b>Publish year:</b> {{ book.publish_year }}</p>
           <p class="left-align"><b>Shelf:</b> {{ book.shelf }}</p>
@@ -36,11 +36,10 @@
             <div class="card small">
                 <div class="card-image">
                     <img src="{{ random_book.featured_image.url }}" alt="{{random_book.title}}">
-                    <span class="card-title">{{ random_book.title }}</span>
                 </div>
                 <div class="card-content">
+                    <p class="left-align purple-text text-lighten-1">{{ book.title }}</p>
                     <p class="left-align"><b>Author:</b> {{ random_book.author }}</p>
-                    <p class="left-align"><b>Shelf:</b> {{ random_book.shelf }}</p>
                 </div>
                 <div class="card-action">
                     <a href="{% url 'book_issue' random_book.slug %}" class="left">Explore</a>
@@ -49,7 +48,7 @@
         </div>
     {% endfor %}
 </div>
-
+<!-- If user is not logged-in and attempts to access the page -->
 {% else %}
 <div class="row">
     <div class="col s6 m12 center-align">

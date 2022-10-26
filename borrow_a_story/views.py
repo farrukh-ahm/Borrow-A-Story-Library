@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 import random
 
 
+# Index Page View
 class BookCatalogue(generic.ListView):
     model = Book
     queryset = Book.objects.order_by('title')
@@ -13,6 +14,7 @@ class BookCatalogue(generic.ListView):
     template_name = 'index.html'
 
 
+# Book Issue Page
 class BookIssue(View):
 
     def get(self, request, slug, *args, **kwargs):
@@ -60,6 +62,7 @@ class BookIssue(View):
         return render(request, 'issued.html', context)
 
 
+# Page Rendered After Returning A Book
 class BookReturn(View):
 
     def get(self, request, slug, *args, **kwargs):
@@ -90,6 +93,7 @@ class BookReturn(View):
         return render(request, 'book_return.html', context)
 
 
+# User Profile Page
 class UserProfile(View):
 
     def get(self, request, *args, **kwargs):
@@ -174,6 +178,7 @@ class UserProfile(View):
         return render(request, 'profile.html', context)
 
 
+# Bookmark action handler
 class Bookmark(View):
 
     def post(self, request, slug):

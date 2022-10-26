@@ -16,7 +16,11 @@ class Author(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=100, unique=True)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name="book_author")
+    author = models.ForeignKey(
+        Author,
+        on_delete=models.CASCADE,
+        related_name="book_author"
+        )
     publish_year = models.DateField()
     slug = models.SlugField(max_length=100, unique=True)
     featured_image = CloudinaryField('image', default='placeholder')
@@ -40,8 +44,16 @@ class Book(models.Model):
 
 
 class Issue(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='issue')
-    issued_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_name")
+    book = models.ForeignKey(
+        Book,
+        on_delete=models.CASCADE,
+        related_name='issue'
+        )
+    issued_to = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="user_name"
+        )
     issued_on = models.DateTimeField(auto_now=True)
     return_by = models.DateField()
     return_status = models.BooleanField(default=False)
@@ -54,7 +66,11 @@ class Issue(models.Model):
 
 
 class User_Detail(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='user'
+        )
     address = models.TextField()
     contact_no = models.IntegerField()
 

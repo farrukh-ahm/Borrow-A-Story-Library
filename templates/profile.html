@@ -3,13 +3,14 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
+<!-- When logged-out user attempts to access the page -->
 {% if user.is_anonymous %}
 <div class="row">
   <div class="col s6 m12 center-align">
     <h3 class="teal-text">Not Authorised. Please login to access the page.</h3>
   </div>
 </div>
-
+<!-- When User Logged-In -->
 {% elif user.is_authenticated %}
 <div class="row">
   <div class="col s12 m6 offset-m2">
@@ -43,7 +44,7 @@
         <button data-target="modal1" class="btn btn-lg modal-trigger">Edit</button>
     </div>
 </div>
-
+<!-- Display a Carousel of Books Borrowed by User -->
 {% if borrowed_books.count %}
 <div class="row">
   <div class="col s12 m6 offset-m2">
@@ -60,7 +61,7 @@
   </div>
 </div>
 {% endif %}
-
+<!-- Display a Carousel of Books Bookmarked by User -->
 {% if bookmarks|length %}
   <div class="row">
     <div class="col s12 m6 offset-m2">
@@ -71,7 +72,7 @@
     <div class="col s12 m6 offset-m3">
       <div class="carousel">
         {% for bookmark in bookmarks %}
-        <a class="carousel-item" href="#one!"><img src='{{bookmark.featured_image.url}}'></a>
+        <a class="carousel-item" href="#one!"><img src='{{bookmark.featured_image.url}}' alt="{{bookmark.title}}"></a>
         {% endfor %}
       </div>
     </div>
@@ -82,7 +83,7 @@
 
 {% endif %}
 
-<!-- Modal Structure -->
+<!-- Modal Structure/ Form to add or edit user_details model -->
 <div id="modal1" class="modal">
   <div class="modal-content">
     <h4>Contact Info:</h4>
