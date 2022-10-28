@@ -2,7 +2,7 @@
 [View the live project here](https://borrow-a-story.herokuapp.com/)
 
 ## Introduction
-"Borrow a Story" is a website for a public library, which catalogues all its collection online. A visitor to the library can easily access the website and find out books they would be interested in, read the summary, look-up the shelf they can find it on and borrow it via the website only. All it takes is creting their account, which takes just a minute and they can be exploring the world of stories and information with the click of a button!
+"Borrow a Story" is a website for a public library, which catalogues all of its collections online. A visitor to the library can easily access the website and find books they would be interested in, read the summary, look-up the shelf they can find it on and borrow it via the website. All it takes is creating their account, which takes just a minute allowing them to explore the world of stories and information with the click of a button!
 
 ![Image of application responsiveness on different devices](./media/images/responsive.JPG)
 
@@ -38,18 +38,18 @@
 
 # UX/UI <a name="ux"></a>
 ## Site Purpose <a name="purpose"></a>
-The purpose of this website is to provide a platform for both, the Library staff and the Library patrons, where they can access their desired objectives. A library staff can efficiently and convinently catalogue books available at the library, look-up the status of books whether it's available or has been borrowed by a library patron, and manage the patron's information.
-On the other hand, a library patron/user can convinently find the books they might be interested in, find the location in the library where the book is kept, and if available, borrow it easily via the website itself. 
+The purpose of this website is to provide a platform for both, the Library staff and the Library patrons, where they can access their objectives through the ease of navigation. A library staff can efficiently and conveniently catalogue books available at the library, look-up the status of books whether they are available or have been borrowed by a library patron, and manage the patron's information.
+On the other hand, a library patron/user can conveniently find the book they might be interested in, find the location in the library where it is kept, and if available, borrow it easily via the website itself. 
 
 ## Site Objectives<a name="objectives"></a>
 1. Provide an appealing and user friendly website.
-1. Provide effective database maangement tools to the staffs.
-1. Provide ease-of-navigation throughout the website.
-1. Encourage more people to visit library by coalescing digital media with print media.
+1. Provide effective database mangement tools to the staffs.
+1. Provide ease of navigation throughout the website.
+1. Encourage more people to visit the library by coalescing digital media with print media.
 
 ## Target Audience <a name="audience"></a>
 1. Regular visitors to the library.
-1. Reluctant visitors who wants to avoid the hassle of going to the counter and getting a book issued.
+1. Reluctant visitors who want to avoid the hassle of going to the counter and getting a book issued.
 1. Youngsters who are more comfortable with digital platforms.
 1. For every book lover out there.
 1. For everyone who wants to try out the public library.
@@ -103,7 +103,7 @@ The fonts used in the website are the standard fonts provided by MaterializeCSS 
 ## Present Features <a name="present"></a>
 
 ### Navbar <a name="nav"></a>
-The navbar is convinently constructed to display the website name, clicking on which will take you to the homepage. It also displays the links depending on the user viewing the website. If it's a new user, it will display the log-in and sign-up links, if the user is logged in, it will display the profile and log-out links, and to an admin, it will display the 'admin' link instead of the profile link, so that the admin can easily access the database.
+The navbar is conveniently constructed to display the website name, clicking on which would take you to the homepage. It also displays the links depending on the user viewing the website. If it's a new user, it will display the log-in and sign-up links, if the user is logged in, it will display the profile and log-out links, and to an admin, it will display the 'admin' link instead of the profile link, so that the admin can easily access the database.
 The navbar is also customised to wrap all the links into a burger menu for small-screen devices.
 <br>
 
@@ -126,7 +126,7 @@ Mobile-device Menu:
 <br>
 
 ### Homepage <a name="home"></a>
-The hompage displays the catalogue of all the books at the library, and is paginated to show 9 books per page. The book information such as the title, author name, published year and the shelf it is kept on are all contained within the cards. The book-cards are also customised. If the user is logged-out, it'll ask them to log-in to see the detail. To a logged-in user, it'll show either of three options: Borrow, Return or Not-Availabe depending on the status of the book. This card also has the bookmark icon, which the user can interact with and bookmark them.
+The homepage displays the catalogue of all the books at the library, and is paginated to show 9 books per page. The book information such as the title, author name, published year and the shelf it is kept on are all contained within the cards. The book cards are also customised. If the user is logged-out, it'll ask them to log-in to see the detail, where as to a logged-in user, it'll show either of three options: Borrow, Return or Not-Available depending on the status of the book. This card also has the bookmark icon, which the user can interact with and bookmark them.
 <br><br>
 
 Homepage as seen by a logged-out user:
@@ -137,7 +137,7 @@ Homepage as seen by a logged-in user:
 ![Logged-in homepage](./media/images/homepage-loggedin.JPG)
 
 ### Book Borrow/Return Page <a name="borrow"></a>
-Upon clicking Borrow/Return button, the user is redirected to a new page where the user can read a brief summary of the book, and if they want to borrow it, they can just put in the date they are willing to return the book and borrow it directly. For returning, the same can be done, by just clicking the Return button, the databse will record the book as returned by the user.
+Upon clicking Borrow/Return button, the user is redirected to a new page where the user can read a summary of the book, and if they want to borrow it, they can just select a return date and borrow it directly. For returning, the same can be done, by just clicking the Return button, the database will record the book as returned by the user.
 <br>
 
 ![Borrow the book](./media/images/issue-page-1.JPG)
@@ -148,7 +148,7 @@ Upon clicking Borrow/Return button, the user is redirected to a new page where t
 <br>
 
 ### Book Issued/Returned Confirmation Page <a name="confirmation"></a>
-After borrowing/returning the book, the user is redirected to the confirmation page, which displays the confirmation message and, also, at the bottom shows a collection of few books from the catalogue which the user might be interested in. Hence, encouraging them to explore more and read more books.
+After borrowing/returning the book, the user is redirected to the confirmation page, which displays the confirmation message and also, at the bottom shows a collection of a few books from the catalogue that the user might be interested in. Hence, encouraging them to explore and read more.
 <br><br>
 
 Book Borrowed Confirmation:
@@ -167,9 +167,9 @@ Selection of Books from the Catalogue the User Might Be Interested In:
 <br><br>
 
 ### Profile <a name="profile"></a>
-The profile page displays the basic information of the user provided while registering, like user_name and e-mail address. It also has a section for contact information, which the user can fill, like address and phone number. This information is handled by the django's form element to update the database.
+The profile page displays the basic information of the user that they provided while registering, like user_name and e-mail address. It also has a section for contact information, which the user can fill, like address and phone number. This information is handled by the django's form element to update the database.
 
-This page also displays the books which has been borrowed by the user and the books bookmarked by them.
+This page also displays the books which have been borrowed by the user and the books bookmarked by them.
 <br><br>
 
 Bio Section:<br>
@@ -215,17 +215,17 @@ In the future, given more time to work on the website, I would like to implement
 
 ## Manual Testing
 1. Book cards weren't rendering properly.
-    - The intention was to dispaly 3 cards per row, however, it wasn't rendering properly even after using ```{% if forloop.counter|divisibleby:3 %}```.
-    - The looped cards weren't closed within the ```<div class='row'></div>``` container properly, resulting into improper rendering.
+    - The intention was to display 3 cards per row, however, it wasn't rendering properly even after using ```{% if forloop.counter|divisibleby:3 %}```.
+    - The looped cards weren't closed within the ```<div class='row'></div>``` container properly, resulting in improper rendering.
     - This issue was solved by locating the closing ``div`` tag.
 
 2. The Return button and Not-Available tags weren't showing as intended.
-    - The intention was, if a particular book had been borrowed by the user, the ``Retrun`` button will show under the card, whereas, if the user is different and the book is borrowed, the ``Not Available`` tag will be shown.
+    - The intention was, if a particular book had been borrowed by the user, the ``Return`` button will show under the card, whereas, if the user is different and the book is borrowed, the ``Not Available`` tag will be shown.
     - Was using ``if`` statement which was trying to get data from a queryset in the template, hence it wasn't working as intended.
     - Used ``for`` loop to iterate through the queryset and get the proper data.
 
 3. The button under the cards wasn't showing ``Return`` command to the current borrower of the book.
-    - The ``Return`` button was only being displayed to the user who was the first one to borrow it, even if they had returned it.
+    - The ``Return`` button was only displayed to the user who was the first one to borrow it, even if they had returned it.
     - Was using ``{% if book.issue.issued_to==user %}`` which was getting the first entered data only and not the latest one.
     - ``{% for issue in book.issue.reverse|slice:":1" %}`` allowed the template to extract the latest entry of the Issue model.
 
@@ -242,7 +242,7 @@ In the future, given more time to work on the website, I would like to implement
     - Copying the links of the book_issue.html and profile pages and launching them without logging-in allowed anyone to access these pages.
     - Added ``{% if user.is_authenticated %}`` tags to prevent non-authorised users from accessing such pages.
 
-7. Bookmark button was not working properly on Home page.
+7. Bookmark button was not working properly on the Home page.
     - Clicking on the bookmark button, the icon wasn't changing.
     - The functionality of the bookmark button was working as intentded, and the database was being updated accordingly.
     - However, the icon change wasn't triggering.
@@ -250,8 +250,8 @@ In the future, given more time to work on the website, I would like to implement
     - Again, the code was not properly iterating through the queryset and hence wasn't checking the user's bookmarks as intended.
     - This was solved by adding a function ``user_bookmarked`` in the Book model class and changing the code, whose final form will be discussed in the next point.
 
-8. The Book card on Homepage was displaying multiple bookmark icons.
-    - The code was iterating through the queryset and displaying the bookmarks according to all the users who had bookmarked the book.
+8. The Book card on the Homepage was displaying multiple bookmark icons.
+    - The code was iterating through the queryset and displayed the bookmarks according to all the users who had bookmarked the book.
     - ``user_bookmarked`` function was added to the Book model class, which extracted a list of users.
     - The code in the template was changed to its final form ``{% if user.id in book.user_bookmarked %}``, which now checks if the current user's name is in the list.
     - The bookmark works as intended now, both in functionality and display.
