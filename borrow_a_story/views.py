@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views import generic, View
 from .models import Author, Book, Issue, User_Detail
-from .forms import IssueForm, ProfileForm
+from .forms import IssueForm, ProfileForm, BookAddForm, AuthorAddForm
 from django.http import HttpResponseRedirect
 import random
 
@@ -191,3 +191,5 @@ class Bookmark(View):
             book.bookmarked.add(request.user)
 
         return HttpResponseRedirect(reverse('home'))
+
+

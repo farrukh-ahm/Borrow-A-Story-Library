@@ -19,3 +19,18 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = User_Detail
         fields = ('address', 'contact_no',)
+
+
+class BookAddForm(forms.ModelForm):
+    model = Book
+    fields = (
+        'title', 'author', 'publish_year',
+        'slug', 'featured_image', 'excerpt',
+        'bookmarked', 'available', 'shelf'
+    )
+    widgets = {'publish_year': DateInput()}
+
+
+class AuthorAddForm(forms.ModelForm):
+    model = Author
+    fields = ('author')
