@@ -28,4 +28,9 @@ urlpatterns = [
         views.Bookmark.as_view(),
         name='bookmarked_books'
         ),
+    path(
+        'managebook',
+        views.AdminControl.as_view(),
+        name='manage_book'
+        ),
 ]

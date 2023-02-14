@@ -1,4 +1,4 @@
-from .models import Issue, User_Detail
+from .models import Issue, User_Detail, Book, Author
 from django import forms
 
 
@@ -22,15 +22,21 @@ class ProfileForm(forms.ModelForm):
 
 
 class BookAddForm(forms.ModelForm):
-    model = Book
-    fields = (
-        'title', 'author', 'publish_year',
-        'slug', 'featured_image', 'excerpt',
-        'bookmarked', 'available', 'shelf'
-    )
-    widgets = {'publish_year': DateInput()}
+
+    authors = forms.ModelChoiceField(queryset=Author.objects.all())
+
+    class Meta:
+        model = Book
+        fields = (
+            'title', 'authors', 'publish_year',
+            'slug', 'featured_image', 'excerpt',
+            'bookmarked', 'available', 'shelf',
+        )
+        widgets = {'publish_year': DateInput()}
 
 
 class AuthorAddForm(forms.ModelForm):
-    model = Author
-    fields = ('author')
+
+    class Meta:
+        model = Author
+        fields = ('author',)

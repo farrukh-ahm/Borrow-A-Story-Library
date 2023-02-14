@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+{% if user.is_superuser %}
+
+<!-- Add a New Author -->
+<div class="row">
+  <form class="col s12 m4 l4 push-m4 push-l4  info-control">
+      <div class="input-field col s12">
+        <input placeholder="Author's Name" id="author_name" type="text" class="validate">
+        <label for="author_name">Author's Name</label>
+        {% csrf_token %}
+        <button type="submit" class="btn btn-signup btn-small"><i class="material-icons right">add_circle_outline</i>Add</button>
+      </div>
+  </form>
+</div>
+
+<!-- List of All the Books -->
+<div class="row">
+  {% for book in book_list %}
+    
+  <div class="row">
+    <div class="col s12 m12 l4">
+      <div class="card medium">
+        <div class="card-image">
+          <img src="{{book.featured_image.url}}">
+        </div>
+        <div class="card-content">
+          <p class="left-align purple-text text-lighten-1">{{ book.title }}</p>
+          <p class="left-align"><b>Author:</b> {{ book.author }}</p>
+        </div>
+        <div class="card-action">
+          <button class="btn btn-small">Edit</button>
+          <button class="btn btn-small red lighten-1">Delete</button>
+        </div>
+      </div>
+    </div>      
+      {% if forloop.counter|divisibleby:3 %}
+    </div>
+  <div class="row">
+        {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% else %}
+
+<div class="row">
+  <div class="col s6 m12 center-align">
+    <h3 class="teal-text">Not Authorised. Please login to access the page.</h3>
+  </div>
+</div>
+
+
+{% endif %}
+
+
+{% endblock %}

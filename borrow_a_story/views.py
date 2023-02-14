@@ -193,3 +193,18 @@ class Bookmark(View):
         return HttpResponseRedirect(reverse('home'))
 
 
+# Book Add/Delete by the Admin
+class AdminControl(View):
+
+    def get(self, request, *args, **kwargs):
+        queryset = Book.objects.all()
+        book_list = queryset
+        bookform = BookAddForm()
+        authorform = Author()
+        context = {
+            'book_list': book_list,
+            'bookform': bookform,
+            'authorform': authorform,
+        }
+
+        return render(request, 'managebook.html', context)
