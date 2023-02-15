@@ -27,6 +27,7 @@ class BookAddForm(forms.ModelForm):
 
     class Meta:
         model = Book
+        prepopulated_fields = {'slug': ('title',)}
         fields = (
             'title', 'authors', 'publish_year',
             'slug', 'featured_image', 'excerpt',

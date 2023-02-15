@@ -37,5 +37,10 @@ urlpatterns = [
         'author/',
         views.AddAuthor.as_view(),
         name='add_author'
+    ),
+    path(
+        'deletebook/<slug:slug>',
+        views.DeleteBook.as_view(),
+        name='deletebook'
     )
 ]

@@ -16,6 +16,8 @@
   </form>
 </div>
 
+
+
 <!-- List of All the Books -->
 <div class="row">
   {% for book in book_list %}
@@ -32,7 +34,10 @@
         </div>
         <div class="card-action">
           <button class="btn btn-small">Edit</button>
-          <button class="btn btn-small red lighten-1">Delete</button>
+          <form action="{% url 'deletebook' book.slug %}" method="POST">
+            {% csrf_token %}
+            <button  type="submit" class="btn btn-small red lighten-1">Delete</button>
+          </form>
         </div>
       </div>
     </div>      
@@ -54,6 +59,5 @@
 
 
 {% endif %}
-
 
 {% endblock %}

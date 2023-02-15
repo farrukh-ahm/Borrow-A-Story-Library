@@ -224,3 +224,14 @@ class AddAuthor(View):
             authorform = AuthorAddForm()
             print("Invalid")
             return redirect(reverse('manage_book'))
+
+
+# Remove Book by Admin
+class DeleteBook(View):
+
+    def post(self, request, slug, *args, **kwargs):
+        queryset = Book.objects.all()
+        book = get_object_or_404(queryset, slug=slug)
+        book.delete()
+
+        return redirect(reverse('manage_book'))
