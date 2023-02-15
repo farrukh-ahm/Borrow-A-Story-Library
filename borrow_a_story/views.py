@@ -200,7 +200,7 @@ class AdminControl(View):
         queryset = Book.objects.all()
         book_list = queryset
         bookform = BookAddForm()
-        authorform = Author()
+        authorform = AuthorAddForm()
         context = {
             'book_list': book_list,
             'bookform': bookform,
@@ -208,3 +208,19 @@ class AdminControl(View):
         }
 
         return render(request, 'managebook.html', context)
+
+
+# Author Add by Admin
+class AddAuthor(View):
+
+    def post(self, request):
+        queryset = Author.objects.all()
+        authorform = AuthorAddForm(request.POST)
+        if authorform.is_valid():
+            authorform.save()
+
+            return redirect(reverse('manage_book'))
+        else:
+            authorform = AuthorAddForm()
+            print("Invalid")
+            return redirect(reverse('manage_book'))

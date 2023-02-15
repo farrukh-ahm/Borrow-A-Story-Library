@@ -29,8 +29,13 @@ urlpatterns = [
         name='bookmarked_books'
         ),
     path(
-        'managebook',
+        'managebook/',
         views.AdminControl.as_view(),
         name='manage_book'
         ),
+    path(
+        'author/',
+        views.AddAuthor.as_view(),
+        name='add_author'
+    )
 ]

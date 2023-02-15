@@ -7,10 +7,9 @@
 
 <!-- Add a New Author -->
 <div class="row">
-  <form class="col s12 m4 l4 push-m4 push-l4  info-control">
+  <form class="col s12 m4 l4 push-m4 push-l4  info-control" method="POST" action="{% url 'add_author' %}">
       <div class="input-field col s12">
-        <input placeholder="Author's Name" id="author_name" type="text" class="validate">
-        <label for="author_name">Author's Name</label>
+        {{authorform}}
         {% csrf_token %}
         <button type="submit" class="btn btn-signup btn-small"><i class="material-icons right">add_circle_outline</i>Add</button>
       </div>
