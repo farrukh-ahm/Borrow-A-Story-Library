@@ -22,7 +22,7 @@
   <form class="col s12 m4 l4 push-4 push-l4 info-control" method="POST" enctype="multipart/form-data">
     {{bookform.as_p}}
     {% csrf_token %}
-    <button type="submit" class="btn btn-signup btn-small"><i class="material-icons right">add_circle_outline</i>Add</button>
+    <button type="submit" class="btn btn-signup btn-small" style="margin-bottom: 2em;"><i class="material-icons right">add_circle_outline</i>Add</button>
   </form>
 
 </div>
@@ -42,11 +42,17 @@
           <p class="left-align"><b>Author:</b> {{ book.author }}</p>
         </div>
         <div class="card-action">
-          <button class="btn btn-small">Edit</button>
-          <form action="{% url 'deletebook' book.slug %}" method="POST">
-            {% csrf_token %}
-            <button  type="submit" class="btn btn-small red lighten-1">Delete</button>
-          </form>
+          <div class="row">
+            <div class="col s2 m2 l2">
+                <button class="btn btn-small">Edit</button>
+            </div>
+            <div class="col s2 m2 l2">
+                <form action="{% url 'deletebook' book.slug %}" method="POST">
+                  {% csrf_token %}
+                  <button  type="submit" class="btn btn-small red lighten-1">Delete</button>
+                </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>      
