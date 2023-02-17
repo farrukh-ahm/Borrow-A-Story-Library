@@ -3,6 +3,7 @@ from django.views import generic, View
 from .models import Author, Book, Issue, User_Detail
 from .forms import IssueForm, ProfileForm, BookAddForm, AuthorAddForm
 from django.http import HttpResponseRedirect
+from django.utils.text import slugify
 import random
 
 
@@ -208,6 +209,16 @@ class AdminControl(View):
         }
 
         return render(request, 'managebook.html', context)
+
+    def post(self, request, *args, **kwargs):
+        book = BookAddForm(request.POST, request.FILES)
+        if book.is_valid():
+            newbook = book.save(commit=False)
+            newbook.slug = slugify(newbook.title)
+            newbook.available = True
+            newbook.save()
+
+        return redirect(reverse('manage_book'))
 
 
 # Author Add by Admin

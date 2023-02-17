@@ -23,17 +23,16 @@ class ProfileForm(forms.ModelForm):
 
 class BookAddForm(forms.ModelForm):
 
-    authors = forms.ModelChoiceField(queryset=Author.objects.all())
-
     class Meta:
         model = Book
-        prepopulated_fields = {'slug': ('title',)}
         fields = (
-            'title', 'authors', 'publish_year',
-            'slug', 'featured_image', 'excerpt',
-            'bookmarked', 'available', 'shelf',
+            'title', 'author', 'publish_year',
+            'featured_image', 'excerpt',
+            'bookmarked', 'shelf',
         )
-        widgets = {'publish_year': DateInput()}
+        widgets = {
+            'publish_year': DateInput(),
+            }
 
 
 class AuthorAddForm(forms.ModelForm):

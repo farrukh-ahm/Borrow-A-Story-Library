@@ -17,6 +17,15 @@
 </div>
 
 
+<div class="row">
+  
+  <form class="col s12 m4 l4 push-4 push-l4 info-control" method="POST" enctype="multipart/form-data">
+    {{bookform.as_p}}
+    {% csrf_token %}
+    <button type="submit" class="btn btn-signup btn-small"><i class="material-icons right">add_circle_outline</i>Add</button>
+  </form>
+
+</div>
 
 <!-- List of All the Books -->
 <div class="row">

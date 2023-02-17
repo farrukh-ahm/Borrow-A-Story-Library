@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let carousel = document.querySelectorAll('.carousel');
     M.Carousel.init(carousel);
 
+
+    let selectInt = document.querySelectorAll('select');
+    M.FormSelect.init(selectInt);
+
      // MODAL INITIALISATION
      let popOp = document.querySelectorAll('.modal');
      let modal = M.Modal.init(popOp);
