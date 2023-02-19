@@ -5,6 +5,13 @@
 
 {% if user.is_superuser %}
 
+<div class="row">
+  <div class="col s12 m4 l4 push-m4 push-l4">
+      <h4 class="teal-text">Add Another Author:</h4>
+  </div>
+</div>
+
+
 <!-- Add a New Author -->
 <div class="row">
   <form class="col s12 m4 l4 push-m4 push-l4  info-control" method="POST" action="{% url 'add_author' %}">
@@ -18,6 +25,13 @@
 
 
 <div class="row">
+  <div class="col s12 m4 l4 push-m4 push-l4">
+      <h4 class="teal-text">Add Another Book:</h4>
+  </div>
+</div>
+
+<!-- Add a New Book -->
+<div class="row">
   
   <form class="col s12 m6 l6 push-m3 push-l3 info-control" method="POST" enctype="multipart/form-data">
     {{bookform.as_p}}
@@ -25,6 +39,13 @@
     <button type="submit" class="btn btn-signup btn-small" style="margin-bottom: 2em;"><i class="material-icons right">add_circle_outline</i>Add</button>
   </form>
 
+</div>
+
+
+<div class="row">
+  <div class="col s12 m4 l4 push-m4 push-l4">
+      <h4 class="teal-text">Edit/Delete Books:</h4>
+  </div>
 </div>
 
 <!-- List of All the Books -->
@@ -44,7 +65,7 @@
         <div class="card-action">
           <div class="row">
             <div class="col s2 m2 l2">
-                <button class="btn btn-small">Edit</button>
+                <a href="{% url 'edit_book' book.slug%}" class="btn btn-small">Edit</a>
             </div>
             <div class="col s2 m2 l2">
                 <form action="{% url 'deletebook' book.slug %}" method="POST">

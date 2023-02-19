@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+  
+    <form class="col s12 m6 l6 push-m3 push-l3 info-control" method="POST" action="{% url 'edit_book' book.slug %}" enctype="multipart/form-data">
+        {{editbook.as_p}}
+        {% csrf_token %}
+        <div class="row">
+            <div class="col s1 m1 l1">
+                <button type="submit" class="btn btn-signup btn-small" style="margin-bottom: 2em;">Submit</button>
+            </div>
+            <div class="col s1 m1 l1"></div>
+                <a href="{% url 'manage_book' %}" class="btn btn-small">Cancel</a>
+            </div>
+        </div>
+    </form>
+  </div>
+
+{% endblock %}

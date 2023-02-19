@@ -42,5 +42,10 @@ urlpatterns = [
         'deletebook/<slug:slug>',
         views.DeleteBook.as_view(),
         name='deletebook'
-    )
+    ),
+    path(
+        'managebook/editbook/<slug:slug>',
+        views.EditBook.as_view(),
+        name='edit_book'
+        )
 ]

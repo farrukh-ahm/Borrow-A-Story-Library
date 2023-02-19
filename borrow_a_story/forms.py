@@ -35,6 +35,25 @@ class BookAddForm(forms.ModelForm):
             }
 
 
+class EditBookForm(forms.ModelForm):
+
+    class Meta:
+        model = Book
+        fields = (
+            'title', 'author', 'publish_year',
+            'featured_image', 'excerpt', 'shelf',
+        )
+
+        widgets = {
+            'publish_year': DateInput(),
+            }
+        # def __init__(self, *args, **kwargs):
+        #     super(EditBookForm, self).__init__(*args, **kwargs)
+
+        #     for field_name, field in self.fields.items():
+        #         self.fields[field_name].widget.attrs['placeholder'] = field.label
+
+
 class AuthorAddForm(forms.ModelForm):
 
     class Meta:

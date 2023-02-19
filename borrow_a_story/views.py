@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views import generic, View
 from .models import Author, Book, Issue, User_Detail
-from .forms import IssueForm, ProfileForm, BookAddForm, AuthorAddForm
+from .forms import IssueForm, ProfileForm, BookAddForm, AuthorAddForm, EditBookForm
 from django.http import HttpResponseRedirect
 from django.utils.text import slugify
 import random
@@ -246,3 +246,34 @@ class DeleteBook(View):
         book.delete()
 
         return redirect(reverse('manage_book'))
+
+
+# Edit Book By Admin
+class EditBook(View):
+
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Book.objects.all()
+        fetch_book = get_object_or_404(queryset, slug=slug)
+        editbook = EditBookForm(instance=fetch_book)
+
+        context = {
+            'book': fetch_book,
+            'editbook': editbook
+        }
+
+        return render(request, 'editbook.html', context)
+
+    def post(self, request, slug, *args, **kwargs):
+        queryset = Book.objects.all()
+        book = get_object_or_404(queryset, slug=slug)
+        editbook = EditBookForm(request.POST, request.FILES, instance=book)
+
+        if editbook.is_valid():
+            editbook.save()
+
+            return redirect('manage_book')
+
+        else:
+            editbook = EditBookForm()
+
+            return redirect(reverse('edit_book'))
