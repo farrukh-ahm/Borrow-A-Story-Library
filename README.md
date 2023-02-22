@@ -27,6 +27,8 @@
         1. [Book Borrow/Return Page](#borrow)
         1. [Book Issued/Returned Confirmation Page](#confirmation)
         1. [Profile](#profile)
+        1. [Manage Book (For Admins)](#managebook)
+        1. [Edit Book (For Admins)](#editbook)
         1. [Sign-up/Log-in/Log-out](#sign-in)
     - [Features to Implement](#future)
  - [Testing](#testing)
@@ -185,6 +187,27 @@ Borrowed Books Section:<br>
 Bookmarks:<br>
 
 ![Bookmarks](./media/images/bookmarks.JPG)
+<br><br>
+
+
+### Manage Book (For Admins) <a name="managebook"></a>
+The Manage Book is available only for users with "admin" privilege. Here, an admin can run various functions for managing the inventory, like add new author, add a new book and edit/delete a book from the library.
+
+![Add Author](./media/images/add-author.JPG)
+<br><br>
+
+![Add New Book](./media/images/add-another-book.JPG)
+<br><br>
+
+![Edit/Delete Book](./media/images/edit-delete-book.JPG)
+<br><br>
+
+
+### Edit Book (For Admins) <a name="editbook"></a>
+This page is also available only for user with "admin" privilege. On this page, an admin can edit/correct any information regarding a particular book.
+
+![Edit Book](./media/images/edit-book.JPG)
+<br><br>
 
 
 ### Sign-up/ Log-in/ Log-out <a name="sign-in"></a>
@@ -270,6 +293,9 @@ In the future, given more time to work on the website, I would like to implement
     - The website wasn't launching after deploying it through Heroku app.
     - The requirement.txt file wasn't updated properly when ``crispy-forms-materialize`` was installed.
     - The issue was solved by running ``pip3 freeze --local > requirements.txt`` command in the terminal.
+
+12. The image was not being uploaded to Cloudinary when add a new book from Manage Book page by admin.
+    - The issue was resolved by adding ``enctype="multipart/form-data"`` to FORM element in template and ``request.files`` in VIEWS while fetching the form data. 
 
 
 ## Validator Testings
