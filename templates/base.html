@@ -52,10 +52,25 @@
         </ul>
           
     </header>
-    <!-- Username Display When Logged-In -->
+    
     <div class="container">
+
+        <!-- Flash Messages for Admin actions in Manage Book Page -->
         <div class="row">
-            <div class="col s12 m6 offset-s3 offset-m5">
+            {% if messages %}
+              {% for message in messages %}
+              
+              <div class="col s12 m4 l4 push-m4 push-l4 center-align" id="message">
+                <p class="{{message.tags}}">{{message}}</p>
+              </div>
+          
+              {% endfor %}
+            {% endif %}
+        </div>
+        
+        <!-- Username Display When Logged-In -->
+        <div class="row">
+            <div class="col s12 m6 push-s3 push-m3 center-align">
                 {% if user.is_authenticated %}
                 <p id="logged-user" class="teal-text">Welcome {{ user.get_username }}</p>
             {% endif %}
@@ -69,6 +84,16 @@
     
     </div>
 
+
+
+    <!-- Custom Script for Flash Messages -->
+    <script>
+        let message = document.querySelector("#message")
+    
+        setTimeout(function(){
+            message.remove()
+          }, 3000)
+    </script>
 
     <!-- Materialize Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

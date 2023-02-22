@@ -26,6 +26,21 @@
 }
 
 
+.success{
+    inline-size: 100%;
+    background-color: #BAF5A8;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.error, .warning{
+    inline-size: 100%;
+    background-color: #FF9E86;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+
 @media screen and (max-width: 480px){
     #title{
         font-size: 1.5em;

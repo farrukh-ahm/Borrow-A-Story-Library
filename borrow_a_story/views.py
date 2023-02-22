@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.contrib import messages
 from django.views import generic, View
 from .models import Author, Book, Issue, User_Detail
 from .forms import IssueForm, ProfileForm, BookAddForm, AuthorAddForm, EditBookForm
@@ -102,12 +103,13 @@ class UserProfile(View):
             try:
                 queryset = User_Detail.objects.all()
                 user_info = get_object_or_404(queryset, user=request.user)
+                profile_form = ProfileForm(instance=user_info)
             except:
                 user_info = {
                     'address': 'No details',
                     'contact_no': 'No details'
                     }
-            profile_form = ProfileForm()
+                profile_form = ProfileForm()
 
             # Get list of borrowed books by the user
             borrowed_books = Issue.objects.filter(
@@ -143,6 +145,8 @@ class UserProfile(View):
                 user_update = user_form.save(commit=False)
                 user_update.user = request.user
                 user_update.save()
+
+                messages.success(request, "Profile Updated!")
             else:
                 user_form = ProfileForm()
         except:
@@ -153,6 +157,7 @@ class UserProfile(View):
                 user_update = user_form.save(commit=False)
                 user_update.user = request.user
                 user_update.save()
+                messages.success(request, "Profile Updated!")
             else:
                 user_form = ProfileForm()
 
@@ -218,6 +223,7 @@ class AdminControl(View):
             newbook.available = True
             newbook.save()
 
+        messages.success(request, "Book Added!")
         return redirect(reverse('manage_book'))
 
 
@@ -230,6 +236,7 @@ class AddAuthor(View):
         if authorform.is_valid():
             authorform.save()
 
+            messages.success(request, "Author Added!")
             return redirect(reverse('manage_book'))
         else:
             authorform = AuthorAddForm()
@@ -245,6 +252,7 @@ class DeleteBook(View):
         book = get_object_or_404(queryset, slug=slug)
         book.delete()
 
+        messages.warning(request, 'Book Deleted!')
         return redirect(reverse('manage_book'))
 
 
@@ -271,9 +279,11 @@ class EditBook(View):
         if editbook.is_valid():
             editbook.save()
 
+            messages.success(request, 'Book edited!')
             return redirect('manage_book')
 
         else:
             editbook = EditBookForm()
 
+            messages.error(request, 'Wrong Information!')
             return redirect(reverse('edit_book'))

@@ -7,9 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let carousel = document.querySelectorAll('.carousel');
     M.Carousel.init(carousel);
 
-
+    // FORM SELECT INITIALISATION
     let selectInt = document.querySelectorAll('select');
     M.FormSelect.init(selectInt);
+
 
      // MODAL INITIALISATION
      let popOp = document.querySelectorAll('.modal');
@@ -26,3 +27,12 @@ document.addEventListener('DOMContentLoaded', function() {
      }
 
   });
+
+
+  // let message = document.getElementById("message")
+  //   console.log(message)
+  //   console.log("hello")
+
+  //   setTimeout(()=>{
+  //       message.fadeOut('slow')
+  //     }, 2000)
