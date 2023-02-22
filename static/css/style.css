@@ -29,15 +29,13 @@
 .success{
     inline-size: 100%;
     background-color: #BAF5A8;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin: 1rem 0;
 }
 
 .error, .warning{
     inline-size: 100%;
     background-color: #FF9E86;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin: 1rem 0;
 }
 
 

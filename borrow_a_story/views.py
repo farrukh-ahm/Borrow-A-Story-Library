@@ -161,27 +161,7 @@ class UserProfile(View):
             else:
                 user_form = ProfileForm()
 
-        # Get list of borrowed books by the user
-        borrowed_books = Issue.objects.filter(
-                issued_to=request.user,
-                return_status=False
-                )
-
-        # Get list of books bookmarked by user
-        book_queryset = Book.objects.all()
-        bookmarks = []
-        for book in book_queryset:
-            if book.bookmarked.filter(id=request.user.id).exists():
-                bookmarks.append(book)
-
-        context = {
-            'user_info': user_info,
-            'profile_form': user_form,
-            'borrowed_books': borrowed_books,
-            'bookmarks': bookmarks,
-        }
-
-        return render(request, 'profile.html', context)
+        return redirect(reverse('user_profile'))
 
 
 # Bookmark action handler

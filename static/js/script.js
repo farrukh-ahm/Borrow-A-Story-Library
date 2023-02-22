@@ -27,12 +27,3 @@ document.addEventListener('DOMContentLoaded', function() {
      }
 
   });
-
-
-  // let message = document.getElementById("message")
-  //   console.log(message)
-  //   console.log("hello")
-
-  //   setTimeout(()=>{
-  //       message.fadeOut('slow')
-  //     }, 2000)

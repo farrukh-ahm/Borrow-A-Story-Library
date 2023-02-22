@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% if user.is_superuser %}
+
 <div class="row">
   
     <form class="col s12 m6 l6 push-m3 push-l3 info-control" method="POST" action="{% url 'edit_book' book.slug %}" enctype="multipart/form-data">
@@ -17,5 +19,13 @@
         </div>
     </form>
   </div>
+
+{% else %}
+
+<div class="row">
+<div class="col s6 m12 center-align">
+    <h3 class="teal-text">Not Authorised. Please login as Admin to access the page.</h3>
+</div>
+</div>
 
 {% endblock %}

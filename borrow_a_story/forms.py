@@ -47,11 +47,6 @@ class EditBookForm(forms.ModelForm):
         widgets = {
             'publish_year': DateInput(),
             }
-        # def __init__(self, *args, **kwargs):
-        #     super(EditBookForm, self).__init__(*args, **kwargs)
-
-        #     for field_name, field in self.fields.items():
-        #         self.fields[field_name].widget.attrs['placeholder'] = field.label
 
 
 class AuthorAddForm(forms.ModelForm):
