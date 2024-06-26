@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['borrow-a-story.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['borrowastory.up.railway.app/']
 
 
 # Application definition
